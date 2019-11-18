@@ -1,0 +1,93 @@
+import logging
+
+from django.conf import settings
+from django.contrib import admin
+from django.urls import reverse
+from django.utils.deprecation import MiddlewareMixin
+
+logger = logging.getLogger(__name__)
+
+def check_url(base, url):
+    #url = reverse('admin:'+url)
+    #logger.debug(url)
+
+    #if len(url.split('/')) > 4:
+    #    url = '/'.join(url.split('/')[0:4])+'/'
+
+    #return base == url
+
+    if base == '/admin/':
+        return base == url
+    else:
+        return base in url
+
+def get_normal_app_model(app_list, index, current):
+    " 根据applabel获取label和链接 "
+    children = []
+
+    for item in app_list[index]['models']:
+        children.append({
+            'label': item['name'],
+            'path': item['admin_url'],
+            'active': check_url(item['admin_url'], current)
+            })
+
+    return children
+
+def get_app_model(app_list, name, current):
+    " 根据app.model 获取对应的label和链接 "
+    app, model_name = name.split('.')
+
+    for item in app_list:
+        if app.upper() == item['app_label'].upper():
+            for model in item['models']:
+                if model['object_name'].upper() == model_name.upper():
+                    label = model['name']
+                    path = model['admin_url']
+
+                    return {'label':label,
+                            'path':path,
+                            'active':check_url(path, current)}
+
+class LeftMenuMiddleware(MiddlewareMixin):
+
+
+    def process_template_response(self, request, response):
+        if not request.user.is_authenticated or 'admin' not in request.resolver_match.namespaces:
+            return response
+        menu = getattr(settings, 'JUSS_LEFT_MENU', False)
+        app_list = response.context_data['available_apps']
+        new_menu = []
+        current = request.path_info
+
+        if menu:
+            for i, item in enumerate(menu):
+                new_menu.append({'label':item['label']})
+                new_menu[i]['children'] = []
+
+                for link in item['children']:
+
+                    if 'model' in link:
+                        model = get_app_model(app_list, link['model'], current)
+                        new_menu[i]['children'].append({
+                            'label': model['label'],
+                            'path': model['path'],
+                            'active': model['active']
+                            })
+                    else:
+                        new_menu[i]['children'].append({
+                            'label': link['label'],
+                            'path': link['path'],
+                            'active': check_url(link['path'], current)
+                        })
+        else:
+
+            for i, item in enumerate(app_list):
+                new_menu.append({
+                    'label': item['name'],
+                    'children': get_normal_app_model(app_list, i, current),
+                    })
+
+        response.context_data['juss_left_menu'] = new_menu
+
+        return response

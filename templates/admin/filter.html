@@ -1,0 +1,9 @@
+{% load i18n %}
+<div class="juss-filter">
+<label>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</label>
+<select class="juss-filter-select">
+{% for choice in choices %}
+    <option {% if choice.selected %} selected="selected"{% endif %} data-href="{{ choice.query_string|iriencode }}">{{ choice.display }}</option>
+{% endfor %}
+</select>
+</div>
