@@ -1,4 +1,5 @@
 import logging
+import re
 
 from django.conf import settings
 from django.contrib import admin
@@ -53,7 +54,7 @@ class LeftMenuMiddleware(MiddlewareMixin):
 
 
     def process_template_response(self, request, response):
-        if not request.user.is_authenticated or 'admin' not in request.resolver_match.namespaces:
+        if not request.user.is_authenticated or not re.match(r'\/admin\/*', request.path_info):
             return response
         menu = getattr(settings, 'JUSS_LEFT_MENU', False)
         app_list = response.context_data['available_apps']
