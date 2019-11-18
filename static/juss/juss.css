@@ -42,12 +42,15 @@ body {
 .delete-confirmation #inner p {
   color: var(--danger);
 }
+.dashboard #inner {
+  display: flex;
+  flex-wrap: wrap;
+}
 .dashboard #content {
   width: 100%;
 }
 .dashboard #content-main {
   float: initial;
-  width: auto !important;
 }
 .dashboard #content-related {
   float: initial;
@@ -241,7 +244,6 @@ tbody tr:hover td, tbody tr:hover th {
 #inner {
   margin-top: -3rem;
   padding: 1rem;
-  display: flex;
   width: 100%;
   box-sizing: border-box;
   max-width: 100%;
@@ -546,15 +548,10 @@ ul.messagelist li.danger {
     background-color: var(--secondary) !important;
     color: var(--gray) !important;
   }
-  .dashboard #inner {
-    flex-wrap: wrap;
-  }
   .dashboard #content-main {
-    width:100% !important;
     margin-bottom: 1rem;
   }
   .dashboard #content-related {
-    width: 100% !important;
     margin-left: 0;
   }
 }
