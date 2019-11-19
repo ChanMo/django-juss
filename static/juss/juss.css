@@ -122,16 +122,13 @@ a.section:link, a.section:visited {
   margin-bottom: .5rem !important;
   border: none !important;
 }
-.module h2, .module caption, .inline-group h2 {
-    margin: 0;
-    padding: 8px;
-    font-weight: 400;
-    font-size: 13px;
-    text-align: left;
-    background: var(--secondary) !important;
-    color: #2d3436;
+.change-form .module:not(:first-child) {
+  display: none;
 }
-.inline-group .tabular td.original p {
+.change-form .module > h2 {
+  display: none;
+}
+.change-form .inline-group .tabular td.original p {
   top: 3.25rem;
 }
 
@@ -568,4 +565,23 @@ ul.messagelist li.danger {
   .dashboard #content-related {
     margin-left: 0;
   }
+}
+
+.juss-tabs {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  margin-bottom: 1rem;
+}
+.juss-tabs li {
+  display: inline-block;
+  padding: 0.25rem 1rem 1.2rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  color: var(--gray);
+}
+.tab-active {
+  color: var(--gray-dark) !important;
+  border-color: var(--dark) !important;
 }
