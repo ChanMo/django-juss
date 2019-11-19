@@ -9,13 +9,7 @@ from django.utils.deprecation import MiddlewareMixin
 logger = logging.getLogger(__name__)
 
 def check_url(base, url):
-    #url = reverse('admin:'+url)
-    #logger.debug(url)
-
-    #if len(url.split('/')) > 4:
-    #    url = '/'.join(url.split('/')[0:4])+'/'
-
-    #return base == url
+    " 判断当前选中菜单 "
 
     if base == '/admin/':
         return base == url
@@ -42,6 +36,8 @@ def get_app_model(app_list, name, current):
     for item in app_list:
         if app.upper() == item['app_label'].upper():
             for model in item['models']:
+                logger.debug(model)
+
                 if model['object_name'].upper() == model_name.upper():
                     label = model['name']
                     path = model['admin_url']
@@ -63,24 +59,32 @@ class LeftMenuMiddleware(MiddlewareMixin):
 
         if menu:
             for i, item in enumerate(menu):
-                new_menu.append({'label':item['label']})
-                new_menu[i]['children'] = []
+                new_menu.append({
+                    'label':item['label'],
+                    'children': []
+                    })
 
                 for link in item['children']:
 
                     if 'model' in link:
                         model = get_app_model(app_list, link['model'], current)
-                        new_menu[i]['children'].append({
-                            'label': model['label'],
-                            'path': model['path'],
-                            'active': model['active']
-                            })
+
+                        if model:
+                            new_menu[-1]['children'].append({
+                                'label': model['label'],
+                                'path': model['path'],
+                                'active': model['active']
+                                })
                     else:
-                        new_menu[i]['children'].append({
+                        new_menu[-1]['children'].append({
                             'label': link['label'],
                             'path': link['path'],
                             'active': check_url(link['path'], current)
                         })
+
+                if not new_menu[-1]['children']:
+                    del new_menu[-1]
+
         else:
 
             for i, item in enumerate(app_list):
