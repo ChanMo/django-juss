@@ -36,7 +36,6 @@ def get_app_model(app_list, name, current):
     for item in app_list:
         if app.upper() == item['app_label'].upper():
             for model in item['models']:
-                logger.debug(model)
 
                 if model['object_name'].upper() == model_name.upper():
                     label = model['name']
