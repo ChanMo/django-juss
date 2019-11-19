@@ -10,7 +10,7 @@ django.jQuery("select.juss-filter-select").on("change", function(e) {
  * form tab
  */
 var fieldsets = django.jQuery(".change-form .module");
-if (fieldsets) {
+if (fieldsets.length) {
 var html = '<ul class="juss-tabs">';
 var title;
 fieldsets.each(function(index) {

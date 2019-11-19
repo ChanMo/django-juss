@@ -122,6 +122,9 @@ a.section:link, a.section:visited {
   margin-bottom: .5rem !important;
   border: none !important;
 }
+.dashboard .module caption {
+  background: var(--secondary);
+}
 .change-form .module:not(:first-child) {
   display: none;
 }
