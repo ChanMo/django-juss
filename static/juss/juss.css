@@ -118,14 +118,31 @@ a.section:link, a.section:visited {
 }
 
 /** django **/
+.module {
+  margin-bottom: .5rem !important;
+  border: none !important;
+}
 .module h2, .module caption, .inline-group h2 {
     margin: 0;
     padding: 8px;
     font-weight: 400;
     font-size: 13px;
     text-align: left;
-    background: #dfe6e9;
+    background: var(--secondary) !important;
     color: #2d3436;
+}
+.inline-group .tabular td.original p {
+  top: 3.25rem;
+}
+
+fieldset .collapse-toggle {
+  color: var(--gray) !important;
+}
+.xfull {
+  width: 100% !important;
+}
+.toplinks {
+  border: none !important;
 }
 
 .object-tools a:focus, .object-tools a:hover {
@@ -497,9 +514,6 @@ ul.messagelist li.danger {
   }
 }
 
-.module {
-  margin-bottom: 0 !important;
-}
 #changelist-filter {
   padding: 0.5rem 0 !important;
   background-color: var(--light) !important;
