@@ -46,3 +46,23 @@ function changeTab(e) {
 }
 }
 
+
+/**
+ * left toggle
+ */
+var toggle = Cookies.get('left-toggle');
+if(toggle) {
+  django.jQuery("#left-box").hide();
+  django.jQuery("#header2").addClass("header_fullwidth");
+}
+django.jQuery("#left_toggle").on("click", function(e) {
+  if(django.jQuery("#header2").hasClass("header_fullwidth")) {
+    Cookies.remove('left-toggle');
+    django.jQuery("#left-box").show();
+    django.jQuery("#header2").removeClass("header_fullwidth");
+  } else {
+    Cookies.set('left-toggle', 'true');
+    django.jQuery("#left-box").hide();
+    django.jQuery("#header2").addClass("header_fullwidth");
+  }
+});

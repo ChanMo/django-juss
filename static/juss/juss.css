@@ -197,11 +197,12 @@ tbody tr:hover td, tbody tr:hover th {
 /** juss **/
 
 #container {
+  display: flex;
 }
 #left-box {
-  position: fixed;
-  top: 0;
-  left: 0;
+  //position: fixed;
+  //top: 0;
+  //left: 0;
   width: 280px;
   min-width: 280px;
   height: 100vh;
@@ -254,11 +255,15 @@ tbody tr:hover td, tbody tr:hover th {
   border-radius: 0 2rem 2rem 0;
 }
 #right-box {
-  margin-left: 280px;
+  flex: 1;
+  max-width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
 #content {
+  position: relative;
+  margin-top: 3.5rem;
   padding: 0;
 }
 #inner {
@@ -270,9 +275,8 @@ tbody tr:hover td, tbody tr:hover th {
 }
 #content h1 {
   color: var(--white);
-  margin: 3.5rem 0 0;
   background-color: var(--primary);
-  padding: 2rem 2rem 4rem;
+  padding: 2rem 2rem 3rem;
   font-size: 1.25rem;
 }
 #content-main .object-tools {
@@ -385,6 +389,17 @@ ul.messagelist li.danger {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.header_fullwidth {
+  width: 100% !important;
+}
+.header__left {
+  display: flex;
+  align-items: center;
+}
+#left_toggle {
+  display: flex;
+  align-items: center;
 }
 
 .breadcrumbs {
@@ -531,8 +546,17 @@ ul.messagelist li.danger {
 }
 
 @media (max-width:768px) {
+  #container {
+    overflow: hidden;
+  }
   #left-box {
-    display: none !important;
+    //position: fixed;
+    //top: 0;
+    //left: 0;
+    //width: 80%;
+    //height: 100vh;
+    //z-index: 99;
+    display: none;
   }
   #right-box {
     margin-left: 0 !important;
@@ -540,11 +564,15 @@ ul.messagelist li.danger {
   #header2 {
     height: 3rem;
     line-height: 3rem;
-    width: 100% !important;
     background-color: var(--primary) !important;
-    padding: 0 !important;
+    padding: 0 1rem !important;
+    width: 100%;
+    overflow: hidden;
   }
   #header2 a {
+    color: var(--white) !important;
+  }
+  #header svg {
     color: var(--white) !important;
   }
   .aligned .form-row > div {
@@ -553,8 +581,10 @@ ul.messagelist li.danger {
   #user-tools2{
     display: none !important;
   }
+  #content {
+    margin-top: 3.1rem !important;
+  }
   #content h1 {
-    margin-top: 3rem;
     padding: 1.5rem 1.5rem 3rem;
   }
   .object-tools {
@@ -571,6 +601,9 @@ ul.messagelist li.danger {
   }
   .dashboard #content-related {
     margin-left: 0;
+  }
+  fieldset {
+    min-inline-size: auto !important;
   }
 }
 
