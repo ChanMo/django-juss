@@ -32,6 +32,9 @@
 body {
   background-color: #F1F3F8 !important;
 }
+
+/*********/
+
 .delete-confirmation #inner {
   margin: -2rem 1rem 1rem;
   padding: 1.5rem;
@@ -317,7 +320,7 @@ tbody tr:hover td, tbody tr:hover th {
 }
 
 #changelist #toolbar form #searchbar {
-  padding: 0.4rem 1.5rem !important;
+  padding: 0.4rem 1rem !important;
 }
 #changelist #toolbar form #searchbar:focus {
   border-color: var(--primary) !important;
@@ -327,6 +330,7 @@ tbody tr:hover td, tbody tr:hover th {
   background-color: var(--primary) !important;
   color: var(--white) !important;
   padding: 0.45rem 1.5rem !important;
+  margin-right: 0.5rem !important;
 }
 
 /** change-form **/
