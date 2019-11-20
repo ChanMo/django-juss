@@ -26,7 +26,6 @@
 <div id="left-box">
     <div id="left-box__header">
         <h1>{{site_title}}</h1>
-        <i data-feather="menu" color="#eee"></i>
     </div>
     <dl>
         {% for i in juss_left_menu %}
@@ -43,14 +42,16 @@
     <!-- Header -->
 
     <div id="header2">
-    <div class="breadcrumbs">
-    {% block breadcrumbs %}
-    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-    {% if title %}&rsaquo; {{ title }}{% endif %}
-    {% endblock %}
-    </div>
-
-    <ul id="user-tools2">
+      <div class="header__left">
+        <a id="left_toggle" href="#"><i data-feather="menu"></i></a>
+        <div class="breadcrumbs">
+        {% block breadcrumbs %}
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        {% if title %}&rsaquo; {{ title }}{% endif %}
+        {% endblock %}
+        </div>
+      </div>
+      <ul id="user-tools2">
         <li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>
         <li>
             <a href="#">Hi,  {% firstof user.get_short_name user.get_username %}</a>
@@ -93,7 +94,8 @@
 </div>
 </div>
 <!-- END Container -->
-  <script src="{% static "juss/juss.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+<script src="{% static "juss/juss.js" %}"></script>
 <script>
   feather.replace()
 </script>
