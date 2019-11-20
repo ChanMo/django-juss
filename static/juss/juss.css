@@ -259,6 +259,8 @@ tbody tr:hover td, tbody tr:hover th {
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 #content {
