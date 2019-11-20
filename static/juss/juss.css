@@ -125,9 +125,9 @@ a.section:link, a.section:visited {
 .dashboard .module caption {
   background: var(--secondary);
 }
-.change-form .module:not(:first-child) {
-  display: none;
-}
+//.change-form .module:not(:first-child) {
+//  display: none;
+//}
 .change-form .module > h2 {
   display: none;
 }

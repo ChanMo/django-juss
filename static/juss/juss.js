@@ -9,7 +9,7 @@ django.jQuery("select.juss-filter-select").on("change", function(e) {
 /**
  * form tab
  */
-var fieldsets = django.jQuery(".change-form .module");
+var fieldsets = django.jQuery(".change-form #content-main > form > div").children("fieldset, .inline-group");
 if (fieldsets.length) {
 var html = '<ul class="juss-tabs">';
 var title;
@@ -22,13 +22,23 @@ html += '</ul>';
 django.jQuery("#content-main").prepend(html);
 django.jQuery(".juss-tabs li:first-child").addClass("tab-active");
 
+django.jQuery(fieldsets[0]).show();
+fieldsets.slice(1).each(function(){
+  django.jQuery(this).hide();
+});
+
 /**
  * tabs切换事件
  */
 function changeTab(e) {
   var index = django.jQuery(e).index();
-  django.jQuery(".module").not(`:eq(${index})`).hide();
-  django.jQuery(".module").eq(index).show();
+  fieldsets.each(function(i){
+    if(i == index) {
+      django.jQuery(this).show();
+    } else {
+      django.jQuery(this).hide();
+    }
+  });
   if(!django.jQuery(e).hasClass("tab-active")) {
     django.jQuery(".tab-active").removeClass("tab-active");
     django.jQuery(e).addClass("tab-active");
