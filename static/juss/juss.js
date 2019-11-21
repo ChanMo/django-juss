@@ -14,6 +14,7 @@ if (fieldsets.length) {
 var html = '<ul class="juss-tabs">';
 var title;
 fieldsets.each(function(index) {
+  django.jQuery(this).removeClass("collapse");
   title = django.jQuery(this).find('h2').html();
   title = title ? title : '基础信息';
   html += '<li onclick="changeTab(this)">'+title+'</li>';
