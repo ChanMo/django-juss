@@ -74,16 +74,16 @@ body {
 /* LINKS */
 
 a:link, a:visited {
-    color: #636e72;
+    color: var(--gray);
     text-decoration: none;
 }
 
 a:focus, a:hover {
-    color: #b2bec3;
+    color: var(--gray-dark);
 }
 
 a.section:link, a.section:visited {
-    color: #2d3436;
+    color: var(--gray);
     text-decoration: none;
 }
 
@@ -159,21 +159,21 @@ fieldset .collapse-toggle {
   background: transparent !important;
   border: none !important;
 }
-table {
+#changelist table {
   border: none !important;
 }
-thead th {
+#changelist thead th {
   background: transparent;
   border-top: none;
   color: var(--gray);
   border-color: var(--light);
 }
-th, td {
+#changelist th, td {
   vertical-align: middle;
   padding: 0.75rem 0.5rem;
   border-color: var(--light);
 }
-tbody tr:hover td, tbody tr:hover th {
+#changelist tbody tr:hover td, tbody tr:hover th {
   background-color: var(--light);
 }
 .row2 {
@@ -275,7 +275,7 @@ tbody tr:hover td, tbody tr:hover th {
   box-sizing: border-box;
   max-width: 100%;
 }
-#content h1 {
+#content > h1 {
   color: var(--white);
   background-color: var(--primary);
   padding: 2rem 2rem 3rem;
@@ -589,7 +589,7 @@ ul.messagelist li.danger {
   #inner {
     padding: 0.5rem;
   }
-  #content h1 {
+  #content > h1 {
     padding: 1.5rem 1.5rem 3rem;
   }
   .object-tools {
