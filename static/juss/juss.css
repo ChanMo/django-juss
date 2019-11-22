@@ -584,7 +584,10 @@ ul.messagelist li.danger {
     display: none !important;
   }
   #content {
-    margin-top: 3.1rem !important;
+    //margin-top: 3.1rem !important;
+  }
+  #inner {
+    padding: 0.5rem;
   }
   #content h1 {
     padding: 1.5rem 1.5rem 3rem;
