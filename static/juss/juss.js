@@ -1,3 +1,4 @@
+if (typeof django !== 'undefined') {
 /**
  * filter
  */
@@ -67,3 +68,4 @@ django.jQuery("#left_toggle").on("click", function(e) {
     django.jQuery("#header2").addClass("header_fullwidth");
   }
 });
+}
