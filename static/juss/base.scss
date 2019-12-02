@@ -1,0 +1,17 @@
+$primary: #a20adf;
+$secondary: #0f0f3d;
+$text: #8a8a8a;
+
+@import 'button';
+@import 'table';
+
+a {
+    color: $text;
+    &:hover {
+        color: $primary;
+    }
+}
+
+.primary {
+    color: $primary;
+}
