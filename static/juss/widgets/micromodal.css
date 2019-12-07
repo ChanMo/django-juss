@@ -134,10 +134,15 @@
   transition: transform .25s ease-out,-webkit-transform .25s ease-out;
 }
 
-.modal__btn:focus, .modal__btn:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
+.modal__btn_sm {
+  font-size: .7rem;
+  padding: 0.25rem 1rem;
 }
+
+//.modal__btn:focus, .modal__btn:hover {
+//  -webkit-transform: scale(1.05);
+//  transform: scale(1.05);
+//}
 
 .modal__btn-primary {
   background-color: var(--primary);

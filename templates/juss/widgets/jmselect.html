@@ -3,7 +3,7 @@
   <img id="id_{{widget.name}}_img" src="{{widget.url}}" alt="" height="128" style="margin-bottom:.25rem;" />
   <br>
   {% endif %}
-  <a style="display:inline-block;padding:0.25rem 1rem;background-color:var(--secondary);border-radius:3px" href="#" data-micromodal-trigger="modal-1">选择</a>
+  <a class="modal__btn modal__btn_sm" href="#" data-micromodal-trigger="modal-1">选择</a>
   <input name="{{ widget.name }}" type="hidden" value="{{widget.value|first}}" {% include "django/forms/widgets/attrs.html" %} />
 </div>
 
