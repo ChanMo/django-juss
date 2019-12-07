@@ -2,9 +2,14 @@ import logging
 
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.forms.widgets import ClearableFileInput, Select
+from django.forms.widgets import ClearableFileInput, Select, Textarea
 
 logger = logging.getLogger(__name__)
+
+class RichTextWidget(Textarea):
+    class Media:
+        js = ('bower_components/tinymce/tinymce.min.js',
+                'juss/widgets/richtext.js')
 
 class JFileInputWidget(ClearableFileInput):
     template_name = 'juss/widgets/jfileinput.html'
