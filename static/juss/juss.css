@@ -88,7 +88,10 @@ a.section:link, a.section:visited {
 }
 
 /* FORM BUTTONS */
-
+form .aligned p.help, form .aligned div.help {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
     background: var(--secondary);
     padding: 10px 15px;
