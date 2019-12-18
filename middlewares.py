@@ -51,10 +51,14 @@ class LeftMenuMiddleware(MiddlewareMixin):
     def process_template_response(self, request, response):
         if not request.user.is_authenticated or not re.match(r'\/admin\/*', request.path_info):
             return response
-        menu = getattr(settings, 'JUSS_LEFT_MENU', False)
+
+        if not 'available_apps' in response.context_data:
+            return response
+
         app_list = response.context_data['available_apps']
         new_menu = []
         current = request.path_info
+        menu = getattr(settings, 'JUSS_LEFT_MENU', False)
 
         if menu:
             for i, item in enumerate(menu):
