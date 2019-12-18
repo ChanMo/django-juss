@@ -3,6 +3,7 @@
 <head>
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+<link rel="stylesheet" type="text/css" href="{% static "juss/base.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "juss/juss.css" %}">
 <script src="https://cdn.bootcss.com/feather-icons/4.24.1/feather.min.js"></script>
 {% block extrastyle %}{% endblock %}
@@ -23,20 +24,22 @@
 <!-- Container -->
 <div id="container">
 
-<div id="left-box">
-    <div id="left-box__header">
-        <h1>{{site_title}}</h1>
+    {% if not is_popup %}
+    <div id="left-box">
+        <div id="left-box__header">
+            <h1>{{site_title}}</h1>
+        </div>
+        <dl>
+            {% for i in juss_left_menu %}
+            <dt>{{i.label}}</dt>
+            {% for ii in i.children %}
+            <dd {% if ii.active %}class="active"{% endif %}><a href="{{ii.path}}">{{ii.label}}</a></dd>
+            {% endfor %}
+            {% endfor %}
+        </dl>
     </div>
-    <dl>
-        {% for i in juss_left_menu %}
-        <dt>{{i.label}}</dt>
-        {% for ii in i.children %}
-        <dd {% if ii.active %}class="active"{% endif %}><a href="{{ii.path}}">{{ii.label}}</a></dd>
-        {% endfor %}
-        {% endfor %}
-    </dl>
-</div>
-<div id="right-box">
+    <div id="right-box">
+    {% endif %}
 
     {% if not is_popup %}
     <!-- Header -->
@@ -90,7 +93,9 @@
     </div>
     <!-- END Content -->
 
+    {% if not is_popup %}
     {% block footer %}<div id="footer"></div>{% endblock %}
+    {% endif %}
 </div>
 </div>
 <!-- END Container -->
