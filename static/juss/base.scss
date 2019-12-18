@@ -4,6 +4,7 @@ $text: #8a8a8a;
 
 @import 'button';
 @import 'table';
+@import 'dashboard';
 
 a {
     color: $text;
@@ -14,4 +15,34 @@ a {
 
 .primary {
     color: $primary;
+}
+
+#content {
+    #inner {
+        & > p {
+            // logout
+            margin: 0;
+            padding: .5rem 1rem;
+            background-color: white;
+            &:first-child {
+                padding-top: 1rem;
+                border-radius: 0.25rem 0.25rem 0 0;
+            }
+            &:last-child {
+                padding-bottom: 1rem;
+                border-radius: 0 0 0.25rem 0.25rem;
+            }
+        }
+    }
+}
+
+/** when is popup **/
+.popup {
+    #container {
+        display: initial;
+        min-width: initial;
+    }
+    #content {
+        margin-top: 0;
+    }
 }
