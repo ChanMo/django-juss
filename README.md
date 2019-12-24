@@ -1,6 +1,6 @@
 # DjangoJuss
 
-一个简单的django后台模板
+> 一个简单的django后台模板
 
 ## Screenshots
 
@@ -18,7 +18,7 @@ $ pip install django-juss
 
 2. 在`settings`中修改`INSTALLED_APPS`
 
-```
+```python
 INSTALLED_APPS = [
     'juss',
     'django.contrib.admin',
@@ -27,7 +27,7 @@ INSTALLED_APPS = [
 ```
 
 3. 修改`MIDDLEWARE`
-```
+```python
 MIDDLEWARE = [
     ...
     'juss.middlewares.LeftMenuMiddleware',
@@ -36,7 +36,7 @@ MIDDLEWARE = [
 
 4. 添加自定义菜单(如果未设置, 则显示默认布局)
 
-```
+```python
 JUSS_LEFT_MENU = [
     {'label':'仪表板', 'children':[
         {'label':'首页', 'path':'/admin/'},
