@@ -2,6 +2,12 @@
 
 一个简单的django后台模板
 
+## Screenshots
+
+![Login](./login.png)
+![Users](./users.png)
+
+
 ## Quick start
 
 1. 下载`django-juss`
