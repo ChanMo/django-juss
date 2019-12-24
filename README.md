@@ -10,7 +10,7 @@
 $ pip install django-juss
 ```
 
-2. 修改`settings.py`
+2. 在`settings`中修改`INSTALLED_APPS`
 
 ```
 INSTALLED_APPS = [
@@ -18,13 +18,29 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     ...
 ]
+```
 
-...
-
+3. 修改`MIDDLEWARE`
+```
 MIDDLEWARE = [
     ...
     'juss.middlewares.LeftMenuMiddleware',
 ]
+```
+
+4. 添加自定义菜单(如果未设置, 则显示默认布局)
+
+```
+JUSS_LEFT_MENU = [
+    {'label':'仪表板', 'children':[
+        {'label':'首页', 'path':'/admin/'},
+    ]},
+    {'label':'认证和授权', 'children':[
+        {'model':'account.user'},
+        {'model':'account.group'},
+    ]}
+]
+
 ```
 
 ## 内置Widgets
