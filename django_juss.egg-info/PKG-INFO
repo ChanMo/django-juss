@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: django-juss
-Version: 0.1
+Version: 0.1.2
 Summary: A simple django admin theme.
 Home-page: https://github.com/ChanMo/django-juss.git
 Author: ChanMo
@@ -8,7 +8,13 @@ Author-email: chan.mo@outlook.com
 License: MIT License
 Description: # DjangoJuss
         
-        一个简单的django后台模板
+        > 一个简单的django后台模板
+        
+        ## Screenshots
+        
+        ![Login](./login.png)
+        ![Users](./users.png)
+        
         
         ## Quick start
         
@@ -18,21 +24,37 @@ Description: # DjangoJuss
         $ pip install django-juss
         ```
         
-        2. 修改`settings.py`
+        2. 在`settings`中修改`INSTALLED_APPS`
         
-        ```
+        ```python
         INSTALLED_APPS = [
             'juss',
             'django.contrib.admin',
             ...
         ]
+        ```
         
-        ...
-        
+        3. 修改`MIDDLEWARE`
+        ```python
         MIDDLEWARE = [
             ...
             'juss.middlewares.LeftMenuMiddleware',
         ]
+        ```
+        
+        4. 添加自定义菜单(如果未设置, 则显示默认布局)
+        
+        ```python
+        JUSS_LEFT_MENU = [
+            {'label':'仪表板', 'children':[
+                {'label':'首页', 'path':'/admin/'},
+            ]},
+            {'label':'认证和授权', 'children':[
+                {'model':'account.user'},
+                {'model':'account.group'},
+            ]}
+        ]
+        
         ```
         
         ## 内置Widgets

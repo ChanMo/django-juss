@@ -15,6 +15,7 @@ juss/static/juss/_button.scss
 juss/static/juss/_dashboard.scss
 juss/static/juss/_table.scss
 juss/static/juss/base.css
+juss/static/juss/base.css.map
 juss/static/juss/base.scss
 juss/static/juss/juss.css
 juss/static/juss/juss.js
