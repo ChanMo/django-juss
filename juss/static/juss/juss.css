@@ -88,10 +88,6 @@ a.section:link, a.section:visited {
 }
 
 /* FORM BUTTONS */
-form .aligned p.help, form .aligned div.help {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
     background: var(--secondary);
     padding: 10px 15px;
@@ -152,31 +148,28 @@ fieldset .collapse-toggle {
 }
 
 .object-tools a:focus, .object-tools a:hover {
-    background-color: var(--secondary) !important;
-    color: var(--primary) !important;
-    border-color: transparent !important;
 }
 
-#changelist #toolbar {
+/*#changelist*/ #toolbar {
   margin-right: 0 !important;
   background: transparent !important;
   border: none !important;
 }
-#changelist table {
+/*#changelist*/ table {
   border: none !important;
 }
-#changelist thead th {
+/*#changelist*/ thead th {
   background: transparent;
   border-top: none;
   color: var(--gray);
   border-color: var(--light);
 }
-#changelist th, td {
+/*#changelist*/ th, td {
   vertical-align: middle;
   padding: 0.75rem 0.5rem;
   border-color: var(--light);
 }
-#changelist tbody tr:hover td, tbody tr:hover th {
+/*#changelist*/ tbody tr:hover td, tbody tr:hover th {
   background-color: var(--light);
 }
 .row2 {
@@ -202,75 +195,6 @@ fieldset .collapse-toggle {
 #container {
   display: flex;
 }
-#left-box {
-  //position: fixed;
-  //top: 0;
-  //left: 0;
-  width: 280px;
-  min-width: 280px;
-  height: 100vh;
-  background: #1e2129;
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
-#left-box__header {
-  height: 3.5rem;
-  line-height: 3.5rem;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#left-box__header h1 {
-  color: white;
-  margin: 0;
-}
-#left-box dl {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  background: #2d323e;
-  padding: 1rem 0;
-}
-#left-box dt {
-  height: 2rem;
-  line-height: 2rem;
-  padding: 0 1rem;
-  margin-top: 1rem;
-  color: rgba(255,255,255,0.5);
-}
-#left-box dl dd {
-  padding-right: 1rem;
-}
-#left-box dl dd a {
-  text-decoration: none;
-  display: block;
-  padding: 0 1rem;
-  line-height: 2rem;
-  height: 2rem;
-  color: white;
-}
-#left-box dl dd:hover {
-  background: rgba(255,255,255,0.05);
-}
-#left-box dl .active a {
-  background: var(--primary);
-  border-radius: 0 2rem 2rem 0;
-}
-#right-box {
-  flex: 1;
-  max-width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  height: 100vh;
-  overflow-y: scroll;
-}
-
-#content {
-  position: relative;
-  margin-top: 3.5rem;
-  padding: 0;
-}
 #inner {
   margin-top: -3rem;
   padding: 1rem;
@@ -283,49 +207,6 @@ fieldset .collapse-toggle {
   background-color: var(--primary);
   padding: 2rem 2rem 3rem;
   font-size: 1.25rem;
-}
-#content-main .object-tools {
-  position: absolute;
-  top: 4.75rem;
-  right: 1.5rem;
-  display: block;
-  z-index: 8;
-  float: initial;
-  text-align: right;
-  height: auto;
-}
-.object-tools li {
-  display: inline-block;
-  float: initial;
-  height: auto;
-}
-.object-tools a {
-  display: inline-block !important;
-  float: initial !important;
-  background-color: transparent !important;
-  border: 1px solid var(--secondary) !important;
-}
-#content-main {
-  flex: 1;
-  padding: 1rem;
-  box-sizing: border-box;
-  background-color: white;
-  border-radius: 0.25rem;
-}
-
-/** change-list-view **/
-#changelist .paginator {
-  width: 100%;
-  border: none !important;
-  margin-top: 1rem !important;
-}
-
-.paginator a:link, .paginator a:visited {
-  background-color: var(--primary) !important;
-}
-.paginator a.showall {
-  color: var(--primary) !important;
-  background-color: transparent !important;
 }
 
 #changelist #toolbar form #searchbar {
@@ -394,6 +275,7 @@ ul.messagelist li.danger {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
 }
 .header_fullwidth {
   width: 100% !important;
@@ -421,53 +303,6 @@ ul.messagelist li.danger {
 .breadcrumbs a:hover {
   color: var(--primary) !important;
 }
-
-#user-tools2 {
-  margin: 0;
-  padding: 0;
-}
-#user-tools2 > li {
-  display: inline-block;
-  position: relative;
-}
-#user-tools2 > li > a {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-}
-#user-tools2 > li:hover > a {
-  background-color: rgba(77,89,149,.06);
-  color: var(--primary);
-}
-#user-tools2 > li > ul {
-  display: none;
-  position: absolute;
-  top: 2rem;
-  right: 0;
-  background-color: var(--white);
-  box-shadow: 1px 2px var(--light);
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  border-radius: 0.25rem;
-}
-#user-tools2 > li > ul > li{
-  display: block;
-  border-bottom: 1px solid lightgrey;
-}
-#user-tools2 > li > ul > li:last-child {
-  border-bottom: none !important;
-}
-#user-tools2 > li > ul > li > a{
-  display: block;
-  padding: 0.5rem 1.5rem;
-  white-space: nowrap;
-}
-#user-tools2 > li:hover > ul {
-  display: inline-block !important;
-}
-
 /** login page **/
 #login-page {
   height: 100vh;
@@ -537,19 +372,6 @@ ul.messagelist li.danger {
     width: 100%;
   }
 }
-
-#changelist-filter {
-  padding: 0.5rem 0 !important;
-  background-color: var(--light) !important;
-}
-#changelist-filter label {
-  color: var(--gray) !important;
-}
-.juss-filter {
-  display: inline-block;
-  margin: 0 .5rem;
-}
-
 @media (max-width:768px) {
   #container {
     overflow: hidden;

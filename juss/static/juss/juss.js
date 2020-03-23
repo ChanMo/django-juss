@@ -58,6 +58,7 @@ if(toggle) {
   django.jQuery("#header2").addClass("header_fullwidth");
 }
 django.jQuery("#left_toggle").on("click", function(e) {
+  e.preventDefault();
   if(django.jQuery("#header2").hasClass("header_fullwidth")) {
     Cookies.remove('left-toggle');
     django.jQuery("#left-box").show();

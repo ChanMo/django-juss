@@ -1,9 +1,12 @@
 {% load i18n %}
 <div class="juss-filter">
-<label>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</label>
+    {% comment %}<label>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</label> {% endcomment %}
 <select class="juss-filter-select">
+    {% comment %}<option disabled selected="selected">{{title}}</option>{% endcomment %}
 {% for choice in choices %}
-    <option {% if choice.selected %} selected="selected"{% endif %} data-href="{{ choice.query_string|iriencode }}">{{ choice.display }}</option>
+    <option {% if choice.selected %} selected="selected"{% endif %} 
+        data-href="{{ choice.query_string|iriencode }}">
+    {% if forloop.counter0 == 0 %}{{title}}{% else %}{{ choice.display }}{% endif %}</option>
 {% endfor %}
 </select>
 </div>
