@@ -1,0 +1,11 @@
+{% load static %}
+<div id="id_{{widget.name}}" style="float:left;">
+</div>
+<script>
+  window.props = {
+    id: "id_{{widget.name}}",
+    name: "{{widget.name}}",
+    value: "{% if widget.value %}{{widget.value|stringformat:'s' }}{% endif %}"
+  }
+</script>
+<script src="{% static "juss/index.bundle.js" %}"></script>

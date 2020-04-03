@@ -2,9 +2,27 @@ import logging
 
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.forms.widgets import ClearableFileInput, Select, Textarea
+from django.forms.widgets import ClearableFileInput, Select, Textarea, URLInput
 
 logger = logging.getLogger(__name__)
+
+class HtmlEditor(Textarea):
+    def __init__(self, *args, **kwargs):
+        super(HtmlEditor, self).__init__(*args, **kwargs)
+        self.attrs['class'] = 'html-editor'
+
+    class Media:
+        css = {
+            'all': (
+                'bower_components/codemirror/lib/codemirror.css',
+            )
+        }
+        js = (
+            'bower_components/codemirror/lib/codemirror.js',
+            'bower_components/codemirror/mode/xml/xml.js',
+            'bower_components/codemirror/mode/htmlmixed/htmlmixed.js',
+            'juss/widgets/htmleditor.js'
+        )
 
 class RichTextWidget(Textarea):
     class Media:
@@ -14,6 +32,8 @@ class RichTextWidget(Textarea):
 class JFileInputWidget(ClearableFileInput):
     template_name = 'juss/widgets/jfileinput.html'
 
+class JImageWidget(URLInput):
+    template_name = 'juss/widgets/jimage.html'
 
 class JMSelectWidget(Select):
     template_name = 'juss/widgets/jmselect.html'

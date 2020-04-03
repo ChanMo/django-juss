@@ -38,7 +38,7 @@ def get_app_model(app_list, name, current):
             for model in item['models']:
 
                 if model['object_name'].upper() == model_name.upper():
-                    label = model['name']
+                    label = item['label'] if 'label' in item.keys() else model['name']
                     path = model['admin_url']
 
                     return {'label':label,
@@ -49,6 +49,10 @@ class LeftMenuMiddleware(MiddlewareMixin):
 
 
     def process_template_response(self, request, response):
+        login_bg = getattr(settings, 'JUSS_LOGIN_BG', None)
+        if getattr(response, 'context_data'):
+            response.context_data['login_bg'] = login_bg
+
         if not request.user.is_authenticated or not re.match(r'\/admin\/*', request.path_info):
             return response
 
@@ -74,7 +78,7 @@ class LeftMenuMiddleware(MiddlewareMixin):
 
                         if model:
                             new_menu[-1]['children'].append({
-                                'label': model['label'],
+                                'label': link['label'] if 'label' in link.keys() else model['label'],
                                 'path': model['path'],
                                 'active': model['active']
                                 })

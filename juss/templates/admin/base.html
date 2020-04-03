@@ -55,7 +55,7 @@
         </div>
       </div>
       <ul id="user-tools2">
-        <li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>
+          {% if site_url %}<li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>{% endif %}
         <li>
             <a href="#">Hi,  {% firstof user.get_short_name user.get_username %}</a>
             <ul>
@@ -99,7 +99,7 @@
 </div>
 </div>
 <!-- END Container -->
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+<script src="{% static "bower_components/js-cookie/src/js.cookie.js" %}"></script>
 <script src="{% static "juss/juss.js" %}"></script>
 <script>
   feather.replace()

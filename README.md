@@ -49,6 +49,14 @@ JUSS_LEFT_MENU = [
 
 ```
 
+5. 设置登录页面背景图片
+
+在`settings.py`中添加
+
+```
+JUSS_LOGIN_BG = 'https://example.jpg'
+```
+
 ## 内置Widgets
 
 1. RichTextWidget
@@ -62,3 +70,13 @@ JUSS_LEFT_MENU = [
 3. JMSelectWidget
 
 扩展默认的FilePathField, 增加可视化图片选择
+
+4. JImageWidget
+
+图片选择字段, 基于URLField, 需安装`django-attachments`
+
+## 版本说明
+
+* v0.1.3
+  增加`JImageWidget`
+  增加自定义登录页面背景图`JUSS_LOGIN_BG`
