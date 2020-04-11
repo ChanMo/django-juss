@@ -9,6 +9,8 @@ django_juss.egg-info/dependency_links.txt
 django_juss.egg-info/top_level.txt
 juss/__init__.py
 juss/apps.py
+juss/fields.py
+juss/forms.py
 juss/middlewares.py
 juss/widgets.py
 juss/static/juss/_button.scss
@@ -21,8 +23,12 @@ juss/static/juss/index.bundle.js
 juss/static/juss/index.bundle.js.map
 juss/static/juss/index.js
 juss/static/juss/index.js.map
+juss/static/juss/jsoninput.bundle.js
+juss/static/juss/jsoninput.bundle.js.map
 juss/static/juss/juss.css
 juss/static/juss/juss.js
+juss/static/juss/mulimage.bundle.js
+juss/static/juss/mulimage.bundle.js.map
 juss/static/juss/widgets/htmleditor.js
 juss/static/juss/widgets/jfileselect.js
 juss/static/juss/widgets/micromodal.css
@@ -36,3 +42,5 @@ juss/templates/admin/search_form.html
 juss/templates/juss/widgets/jfileinput.html
 juss/templates/juss/widgets/jimage.html
 juss/templates/juss/widgets/jmselect.html
+juss/templates/juss/widgets/json.html
+juss/templates/juss/widgets/multiple_image.html

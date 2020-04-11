@@ -5,6 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     index: './src/image-picker.js',
+    mulimage: './src/multiple-image.js',
+    jsoninput: './src/jsoninput.js'
   },
   output: {
     path: path.resolve('./static/juss/'),

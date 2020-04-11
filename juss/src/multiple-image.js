@@ -85,7 +85,7 @@ const UploadBox = ({onChoice}) => {
   )
 }
 
-const ImageGrid = ({onChoice}) => {
+const ImageGrid = ({values, onChoice}) => {
   const [data, setData] = useState({count:0, results:[]})
   const [page, setPage] = useState(0)
   const limit = 12
@@ -113,7 +113,10 @@ const ImageGrid = ({onChoice}) => {
     <Grid container spacing={1}>
       {data.results.map(row => (
       <Grid key={row.id} item xs={6} sm={4} md={3}>
-        <ImageBox image={row} onChoice={onChoice} />
+        <ImageBox
+          selected={values.indexOf(row.source) > -1}
+          image={row}
+          onChoice={onChoice} />
       </Grid>
       ))}
     </Grid>
@@ -129,37 +132,63 @@ const ImageGrid = ({onChoice}) => {
   )
 }
 
-const ImageBox = ({image, onChoice}) => (
+const ImageBox = ({selected, image, onChoice}) => {
+  return (
   <Card>
     <CardActionArea onClick={()=>onChoice(image.source)}>
       <CardMedia
-        style={{height:220}}
+        style={selected ? {height:220, border:'4px solid #00b894',boxSizing:'border-box'} : {height:220}}
         image={image.source}
         title={image.name}
       />
     </CardActionArea>
   </Card>
 )
+}
 
 const App = (props) => {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(props.value)
+  //const [value, setValue] = useState(props.value)
+  const [value, setValue] = useState(props.value ? props.value.split(',') : [])
+  const [tmp, setTmp] = useState(props.value ? props.value.split(',') : [])
   const [mode, setMode] = useState(0)
 
-  const handleChoice = (value) => {
+  const handleChoice = (img) => {
+    //setOpen(false)
+    if(tmp.indexOf(img) > -1) {
+      setTmp(tmp.filter(i => i !== img))
+    } else {
+      setTmp([...tmp, img])
+    }
+  }
+
+  const handleSubmit = () => {
+    setValue(tmp)
+    //setTmp([])
     setOpen(false)
-    setValue(value)
   }
 
   return (
     <React.Fragment>
-      {value && <img src={value} alt='img' style={{maxHeight:220,display:'block',marginBottom:8}} />}
+      <Grid container spacing={2} style={{width:'100%',marginBottom:8}}>
+      {value.map((row,index) => (
+        <Grid key={index} item xs={6} sm={4} md={3}>
+          <Card>
+          <CardMedia
+            style={{height:180}}
+            image={row}
+          />
+        </Card>
+        </Grid>
+      ))}
+      </Grid>
       <Button onClick={()=>setOpen(true)} variant="contained" size="small">选择图片</Button>
-      <input
-        type="hidden"
+      <textarea
+        style={{display:"none"}}
         name={props.name}
-        maxLength="200"
-        value={value} />
+        value={tmp.join(',')}
+        onChange={()=>null}
+      />
       <Dialog
         fullWidth
         maxWidth="md"
@@ -172,18 +201,18 @@ const App = (props) => {
             value={mode}
             onChange={(event, value)=>setMode(value)}>
             <Tab label="选择" id="image-picker-tab0"></Tab>
-            <Tab label="上传" id="image-picker-tab1"></Tab>
+            {/**<Tab label="上传" id="image-picker-tab1"></Tab>**/}
           </Tabs>
           <TabPanel value={mode} index={0}>
-            <ImageGrid onChoice={handleChoice} />
+            <ImageGrid values={tmp} onChoice={handleChoice} />
           </TabPanel>
-          <TabPanel value={mode} index={1}>
+          {/**<TabPanel value={mode} index={1}>
             <UploadBox onChoice={handleChoice} />
-          </TabPanel>
+            </TabPanel>**/}
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>setOpen(false)}>取消</Button>
-          <Button color='primary' onClick={()=>setOpen(false)}>确定</Button>
+          <Button color='primary' onClick={handleSubmit}>确定</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

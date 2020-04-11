@@ -2,7 +2,7 @@ import logging
 
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.forms.widgets import ClearableFileInput, Select, Textarea, URLInput
+from django.forms.widgets import ClearableFileInput, Select, Textarea, URLInput, TextInput, Textarea
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,17 @@ class JFileInputWidget(ClearableFileInput):
     template_name = 'juss/widgets/jfileinput.html'
 
 class JImageWidget(URLInput):
+    " 单图 "
     template_name = 'juss/widgets/jimage.html'
+
+class MultipleImageWidget(TextInput):
+    " 多图 "
+    template_name = 'juss/widgets/multiple_image.html'
+
+
+class JSONWidget(Textarea):
+    " JSON "
+    template_name = 'juss/widgets/json.html'
 
 class JMSelectWidget(Select):
     template_name = 'juss/widgets/jmselect.html'
