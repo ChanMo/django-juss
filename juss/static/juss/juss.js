@@ -1,4 +1,12 @@
 if (typeof django !== 'undefined') {
+
+/**
+ * Left menu
+ */
+django.jQuery('#left-box > ul > li > a').on('click', function(e) {
+  django.jQuery(this).parent('li').toggleClass('active');
+});
+
 /**
  * filter
  */

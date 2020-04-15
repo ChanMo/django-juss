@@ -29,14 +29,33 @@
         <div id="left-box__header">
             <h1>{{site_title}}</h1>
         </div>
+        <ul>
+            <li style="display:none;"></li>
+            {% for i in juss_left_menu %}
+            <li {% for ii in i.children %}{% if ii.active %}class="active"{% endif %}{% endfor %}>
+                <a href="javascript:;">{{i.label}}
+                    <i data-feather="chevron-right"></i>
+                </a>
+                <ul>
+                {% for ii in i.children %}
+                <li {% if ii.active %}class="active"{% endif %}>
+                    <a href="{{ii.path}}">{{ii.label}}</a>
+                </li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+        {% comment %}
         <dl>
             {% for i in juss_left_menu %}
-            <dt>{{i.label}}</dt>
+            <dt>{{i.label}} <i data-feather="chevron-down"></i></dt>
             {% for ii in i.children %}
             <dd {% if ii.active %}class="active"{% endif %}><a href="{{ii.path}}">{{ii.label}}</a></dd>
             {% endfor %}
             {% endfor %}
         </dl>
+        {% endcomment %}
     </div>
     <div id="right-box">
     {% endif %}

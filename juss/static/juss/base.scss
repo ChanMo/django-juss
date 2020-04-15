@@ -83,11 +83,77 @@ form .aligned p.help, form .aligned div.help {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(0,0,0,0.12);
 }
 #left-box__header h1 {
   color: white;
   margin: 0;
 }
+#left-box > ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  height: calc(100vh - 3.5rem);
+  overflow-y: auto;
+  & > li {
+    & > a {
+      color: rgba(255,255,255,0.75);
+      padding: 0 1rem;
+      line-height: 2.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      letter-spacing: 2px;
+      &:hover {
+        background: #2d323e;
+        //background: rgba(0,0,0,0.2);
+      }
+      svg {
+        transition: all .25s;
+        width: 14px;
+        height: 14px;
+      }
+    }
+    & + .active {
+      & > ul {
+        transition: all .25s;
+        padding: .5rem 0;
+        height: auto;
+      }
+      & > a {
+        background: #2d323e;
+      }
+      svg {
+        transform: rotate(90deg);
+      }
+      & .active > a {
+        border-color: var(--primary);
+      }
+    }
+    & > ul {
+      overflow: hidden;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      & > li {
+        & > a {
+          display: block;
+          line-height: 2.25rem;
+          padding: 0 2rem;
+          color: rgba(255,255,255,0.5);
+          border-left: 5px solid transparent;
+          &:hover, &:active {
+            border-color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+}
+/**
 #left-box dl {
   margin: 0;
   padding: 0;
@@ -104,6 +170,9 @@ form .aligned p.help, form .aligned div.help {
   padding: 0 1rem;
   margin-top: 1rem;
   color: rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 #left-box dl dd {
   padding-right: 1rem;
@@ -123,6 +192,7 @@ form .aligned p.help, form .aligned div.help {
   background: var(--primary);
   border-radius: 0 2rem 2rem 0;
 }
+**/
 #right-box {
   flex: 1;
   max-width: 100%;

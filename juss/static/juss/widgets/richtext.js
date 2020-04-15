@@ -1,5 +1,5 @@
 tinymce.init({
-  selector:'textarea',
+  selector:'.richtext',
     height: 600,
     language: 'zh_CN',
     language_url: '/static/juss/widgets/zh_CN.js',
