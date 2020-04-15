@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -10,6 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
 import CardMedia from '@material-ui/core/CardMedia'
 import TablePagination from '@material-ui/core/TablePagination'
 import Tabs from '@material-ui/core/Tabs'
@@ -17,6 +19,7 @@ import Tab from '@material-ui/core/Tab'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import BackupIcon from '@material-ui/icons/Backup';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -152,6 +155,7 @@ const App = (props) => {
   const [value, setValue] = useState(props.value ? props.value.split(',') : [])
   const [tmp, setTmp] = useState(props.value ? props.value.split(',') : [])
   const [mode, setMode] = useState(0)
+  const [hover, setHover] = useState(null)
 
   const handleChoice = (img) => {
     //setOpen(false)
@@ -168,6 +172,12 @@ const App = (props) => {
     setOpen(false)
   }
 
+  const handleRemove = (img) => {
+    const res = tmp.filter(i => i !== img)
+    setTmp(res)
+    setValue(res)
+  }
+
   return (
     <React.Fragment>
       <Grid container spacing={2} style={{width:'100%',marginBottom:8}}>
@@ -175,9 +185,14 @@ const App = (props) => {
         <Grid key={index} item xs={6} sm={4} md={3}>
           <Card>
           <CardMedia
-            style={{height:180}}
+            style={{height:180,display:'flex',flexDirection:'row-reverse',alignItems:'flex-start'}}
             image={row}
-          />
+          >
+            <IconButton
+              onClick={()=>handleRemove(row)}>
+              <HighlightOffIcon color="error" />
+            </IconButton>
+          </CardMedia>
         </Card>
         </Grid>
       ))}

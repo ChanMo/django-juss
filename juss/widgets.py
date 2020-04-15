@@ -2,7 +2,7 @@ import logging
 
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.forms.widgets import ClearableFileInput, Select, Textarea, URLInput, TextInput, Textarea
+from django.forms.widgets import ClearableFileInput, Select, Textarea, URLInput, TextInput
 
 logger = logging.getLogger(__name__)
 
@@ -25,14 +25,19 @@ class HtmlEditor(Textarea):
         )
 
 class RichTextWidget(Textarea):
+    def __init__(self, *args, **kwargs):
+        super(RichTextWidget, self).__init__(*args, **kwargs)
+        self.attrs['class'] = 'richtext'
+
     class Media:
         js = ('bower_components/tinymce/tinymce.min.js',
                 'juss/widgets/richtext.js')
 
+
 class JFileInputWidget(ClearableFileInput):
     template_name = 'juss/widgets/jfileinput.html'
 
-class JImageWidget(URLInput):
+class JImageWidget(TextInput):
     " 单图 "
     template_name = 'juss/widgets/jimage.html'
 

@@ -55,7 +55,7 @@ const UploadBox = ({onChoice}) => {
           mode: 'cors',
           body: JSON.stringify({source:e.target.result})
         }).then(res => res.json()).then(res => {
-          onChoice(res.source)
+          onChoice(res.medium)
         }).catch(err => console.log(err))
       }
       reader.readAsDataURL(file)
@@ -131,10 +131,10 @@ const ImageGrid = ({onChoice}) => {
 
 const ImageBox = ({image, onChoice}) => (
   <Card>
-    <CardActionArea onClick={()=>onChoice(image.source)}>
+    <CardActionArea onClick={()=>onChoice(image.medium)}>
       <CardMedia
-        style={{height:220}}
-        image={image.source}
+        style={{width:'100%',height:220}}
+        image={image.small}
         title={image.name}
       />
     </CardActionArea>

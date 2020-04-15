@@ -6,10 +6,29 @@ from . import widgets
 
 logger = logging.getLogger(__name__)
 
+class RichTextField(models.TextField):
+    def formfield(self, **kwargs):
+        return super().formfield(**{
+            'form_class': forms.RichTextField,
+            **kwargs,
+        })
+
+
+class ImageChoiceField(models.CharField):
+    def __init__(self, verbose_name=None, name=None, **kwargs):
+        kwargs.setdefault('max_length', 255)
+        super().__init__(verbose_name, name, **kwargs)
+
+    def formfield(self, **kwargs):
+        return super().formfield(**{
+            'form_class': forms.ImageChoiceField,
+            **kwargs,
+        })
+
 
 class MultipleImageField(ArrayField):
     def __init__(self, base_field=None, size=2, **kwargs):
-        super().__init__(models.URLField(), size, **kwargs)
+        super().__init__(models.CharField(max_length=255), size, **kwargs)
 
     def formfield(self, **kwargs):
         return super().formfield(**{
@@ -36,8 +55,3 @@ class JSONEditField(JSONField):
         })
         res.widget.attrs.update({'template':self.template})
         return res
-
-    def widget_attrs(self, widget):
-        attrs = super().widget_attrs(widget)
-        attrs.setdefault('template', 'teststst')
-        return attrs
