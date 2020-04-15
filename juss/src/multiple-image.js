@@ -45,8 +45,10 @@ TabPanel.propTypes = {
 
 const UploadBox = ({onChoice}) => {
   const handleUpload = event => {
-    if(event.target.files && event.target.files[0]) {
-      const file = event.target.files[0]
+    let images = []
+    let i
+    const files = event.target.files
+    for (i = 0; i < files.length; i++) {
       const reader = new FileReader()
       reader.onload = function(e) {
         fetch("/attachments/", {
@@ -58,16 +60,20 @@ const UploadBox = ({onChoice}) => {
           mode: 'cors',
           body: JSON.stringify({source:e.target.result})
         }).then(res => res.json()).then(res => {
-          onChoice(res.source)
+          images.push(res.source)
+          if(i === files.length) {
+            onChoice(images)
+          }
         }).catch(err => console.log(err))
       }
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(files[i])
     }
   }
 
   return (
     <div>
       <input
+        multiple
         type="file"
         accept="image/*"
         onChange={handleUpload}
@@ -159,10 +165,17 @@ const App = (props) => {
 
   const handleChoice = (img) => {
     //setOpen(false)
-    if(tmp.indexOf(img) > -1) {
-      setTmp(tmp.filter(i => i !== img))
+    if(typeof(img) === 'object') {
+      const res = [...tmp, ...img]
+      setTmp(res)
+      setValue(res)
+      setOpen(false)
     } else {
-      setTmp([...tmp, img])
+      if(tmp.indexOf(img) > -1) {
+        setTmp(tmp.filter(i => i !== img))
+      } else {
+        setTmp([...tmp, img])
+      }
     }
   }
 
@@ -216,14 +229,14 @@ const App = (props) => {
             value={mode}
             onChange={(event, value)=>setMode(value)}>
             <Tab label="选择" id="image-picker-tab0"></Tab>
-            {/**<Tab label="上传" id="image-picker-tab1"></Tab>**/}
+            <Tab label="上传" id="image-picker-tab1"></Tab>
           </Tabs>
           <TabPanel value={mode} index={0}>
             <ImageGrid values={tmp} onChoice={handleChoice} />
           </TabPanel>
-          {/**<TabPanel value={mode} index={1}>
+          <TabPanel value={mode} index={1}>
             <UploadBox onChoice={handleChoice} />
-            </TabPanel>**/}
+          </TabPanel>
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>setOpen(false)}>取消</Button>

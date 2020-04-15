@@ -88,6 +88,9 @@ JUSS_LOGIN_BG = 'https://example.jpg'
 
 ## 版本说明
 
+* v0.1.7
+  多图增加上传
+
 * v0.1.6
   调整样式细节
 

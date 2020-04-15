@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: django-juss
-Version: 0.1.6
+Version: 0.1.7
 Summary: A simple django admin theme.
 Home-page: https://github.com/ChanMo/django-juss.git
 Author: ChanMo
@@ -95,6 +95,9 @@ Description: # DjangoJuss
         图片选择字段, 基于URLField, 需安装`django-attachments`
         
         ## 版本说明
+        
+        * v0.1.7
+          多图增加上传
         
         * v0.1.6
           调整样式细节

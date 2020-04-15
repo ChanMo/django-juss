@@ -1,6 +1,9 @@
+import logging
 from django.contrib.postgres.forms import SimpleArrayField, JSONField
 from django.forms.fields import URLField, CharField
 from .widgets import *
+
+logger = logging.getLogger(__name__)
 
 class RichTextField(CharField):
     #widget = RichTextWidget

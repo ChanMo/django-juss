@@ -13,8 +13,10 @@ def check_url(base, url):
 
     if base == '/admin/':
         return base == url
-    else:
+    elif base:
         return base in url
+    else:
+        return False
 
 def get_normal_app_model(app_list, index, current):
     " 根据applabel获取label和链接 "
