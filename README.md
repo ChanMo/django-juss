@@ -88,6 +88,10 @@ JUSS_LOGIN_BG = 'https://example.jpg'
 
 ## 版本说明
 
+* v0.1.5
+  增加`ImageChoiceField`, `RichTextField`
+  增加可折叠左侧菜单
+
 * v0.1.4
   增加`JSONEditField`, `MultipleImageField`
 
