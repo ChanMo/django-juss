@@ -1,0 +1,18 @@
+{% load static %}
+<ul>
+  <li style="display:none;"></li>
+  {% for i in juss_menus_data %}
+  <li {% for ii in i.children %}{% if ii.active %}class="active"{% endif %}{% endfor %}>
+    <a href="javascript:;">{{i.label}}
+      <img src="{% static "juss/chevron-right.svg" %}" width="20" height="20" alt=">" />
+    </a>
+    <ul>
+    {% for ii in i.children %}
+    <li {% if ii.active %}class="active"{% endif %}>
+      <a href="{{ii.path}}">{{ii.label}}</a>
+    </li>
+    {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>

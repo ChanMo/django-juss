@@ -40,13 +40,26 @@ form .aligned p.help, form .aligned div.help {
     clear: initial;
 }
 
-.breadcrumbs {
-    white-space: nowrap;
-    overflow: hidden;
+div.breadcrumbs {
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: transparent !important;
+  padding: 0 0.85rem;
+  color: #636e72;
+}
+
+div.breadcrumbs a {
+  display: inline-block;
+  color: black;
+  margin-right: .5rem;
+}
+div.breadcrumbs a:hover {
+  color: $primary;
 }
 
 #left-box__header h1 {
     font-weight: bold;
+    font-size: 1.25rem;
 }
 
 .juss-filter-select {
@@ -127,7 +140,7 @@ form .aligned p.help, form .aligned div.help {
       & > a {
         background: #2d323e;
       }
-      svg {
+      img {
         transform: rotate(90deg);
       }
       & .active > a {

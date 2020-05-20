@@ -288,21 +288,6 @@ ul.messagelist li.danger {
   display: flex;
   align-items: center;
 }
-
-.breadcrumbs {
-  background-color: transparent !important;
-  padding: 0 !important;
-}
-.breadcrumbs a {
-  display: inline-block !important;
-  padding: 0 0.5rem !important;
-  color: var(--gray) !important;
-  border-radius: 0.25rem;
-  margin: 0 0.5rem;
-}
-.breadcrumbs a:hover {
-  color: var(--primary) !important;
-}
 /** login page **/
 #login-page {
   height: 100vh;

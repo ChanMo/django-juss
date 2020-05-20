@@ -30,7 +30,7 @@ class RichTextWidget(Textarea):
         self.attrs['class'] = 'richtext'
 
     class Media:
-        js = ('bower_components/tinymce/tinymce.min.js',
+        js = ('juss/tinymce.min.js',
                 'juss/widgets/richtext.js')
 
 

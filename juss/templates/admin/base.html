@@ -1,11 +1,11 @@
 {% load i18n static %}<!DOCTYPE html>
+{% load juss_menus %}
 <html lang="zh-hans">
 <head>
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
 <link rel="stylesheet" type="text/css" href="{% static "juss/base.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "juss/juss.css" %}">
-<script src="https://cdn.bootcss.com/feather-icons/4.24.1/feather.min.js"></script>
 {% block extrastyle %}{% endblock %}
 {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
 {% block extrahead %}{% endblock %}
@@ -29,33 +29,7 @@
         <div id="left-box__header">
             <h1>{{site_title}}</h1>
         </div>
-        <ul>
-            <li style="display:none;"></li>
-            {% for i in juss_left_menu %}
-            <li {% for ii in i.children %}{% if ii.active %}class="active"{% endif %}{% endfor %}>
-                <a href="javascript:;">{{i.label}}
-                    <i data-feather="chevron-right"></i>
-                </a>
-                <ul>
-                {% for ii in i.children %}
-                <li {% if ii.active %}class="active"{% endif %}>
-                    <a href="{{ii.path}}">{{ii.label}}</a>
-                </li>
-                {% endfor %}
-                </ul>
-            </li>
-            {% endfor %}
-        </ul>
-        {% comment %}
-        <dl>
-            {% for i in juss_left_menu %}
-            <dt>{{i.label}} <i data-feather="chevron-down"></i></dt>
-            {% for ii in i.children %}
-            <dd {% if ii.active %}class="active"{% endif %}><a href="{{ii.path}}">{{ii.label}}</a></dd>
-            {% endfor %}
-            {% endfor %}
-        </dl>
-        {% endcomment %}
+        {% juss_menus request.path_info %}
     </div>
     <div id="right-box">
     {% endif %}
@@ -65,19 +39,23 @@
 
     <div id="header2">
       <div class="header__left">
-        <a id="left_toggle" href="#"><i data-feather="menu"></i></a>
-        <div class="breadcrumbs">
+          <a id="left_toggle" href="#">
+              <img src="{% static "juss/menu.svg" %}" alt="menu" id="left_toggle_menu" />
+              <img src="{% static "juss/x.svg" %}" alt="menu" id="left_toggle_x" style="display:none;" />
+          </a>
         {% block breadcrumbs %}
+        <div class="breadcrumbs">
         <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
         {% if title %}&rsaquo; {{ title }}{% endif %}
-        {% endblock %}
         </div>
+        {% endblock %}
       </div>
       <ul id="user-tools2">
           {% if site_url %}<li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>{% endif %}
         <li>
             <a href="#">Hi,  {% firstof user.get_short_name user.get_username %}</a>
             <ul>
+                <li><a href="/admin/accounts/user/{{user.id}}/change/">我的信息</a></li>
                 <li><a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a></li>
                 <li><a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a></li>
             </ul>
@@ -118,11 +96,8 @@
 </div>
 </div>
 <!-- END Container -->
-<script src="{% static "bower_components/js-cookie/src/js.cookie.js" %}"></script>
+<script src="{% static "juss/js.cookie.min.js" %}"></script>
 <script src="{% static "juss/juss.js" %}"></script>
-<script>
-  feather.replace()
-</script>
 
 </body>
 </html>

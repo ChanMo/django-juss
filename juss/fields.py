@@ -27,7 +27,8 @@ class ImageChoiceField(models.CharField):
 
 
 class MultipleImageField(ArrayField):
-    def __init__(self, base_field=None, size=2, **kwargs):
+    def __init__(self, verbose_name=None, base_field=None, size=2, **kwargs):
+        kwargs.update({'verbose_name': verbose_name})
         super().__init__(models.CharField(max_length=255), size, **kwargs)
 
     def formfield(self, **kwargs):

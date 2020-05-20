@@ -13,6 +13,7 @@
 1. 下载`django-juss`
 
 ```bash
+$ pip install django-attachments # 图片管理
 $ pip install django-juss
 ```
 
@@ -21,20 +22,13 @@ $ pip install django-juss
 ```python
 INSTALLED_APPS = [
     'juss',
-    'django.contrib.admin',
+    #'django.contrib.admin',
+    'juss.apps.JussAdminConfig',
     ...
 ]
 ```
 
-3. 修改`MIDDLEWARE`
-```python
-MIDDLEWARE = [
-    ...
-    'juss.middlewares.LeftMenuMiddleware',
-]
-```
-
-4. 添加自定义菜单(如果未设置, 则显示默认布局)
+3. 可选: 添加自定义菜单(如果未设置, 则显示默认布局)
 
 ```python
 JUSS_LEFT_MENU = [
@@ -49,44 +43,51 @@ JUSS_LEFT_MENU = [
 
 ```
 
-5. 设置登录页面背景图片
+4. 可选: 设置登录页面背景图片
 
-在`settings.py`中添加
+在`urls.py`中添加
 
 ```
-JUSS_LOGIN_BG = 'https://example.jpg'
+from django.contrib import admin
+
+admin.site.login_bg = 'https://example.jpg'
+
+urlpatterns = [
+    ...
+    path('admin/', admin.site.urls),
+    ...
+]
 ```
 
 ## 内置Fields
 
-1. JSONEditField
+1. ImageChoiceField
 
-简单的JSON编辑字段, 基于`django.contrib.postgres.fields.JSONField`
+单图片选择字段
+
+```python
+from juss.fields import ImageChoiceField
+
+class Demo(models.Model):
+    image = ImageChoiceField(_('image'), blank=True, null=True)
+```
 
 2. MultipleImageField
 
-多图片选择字段, 基于`django.contrib.postgres.fields.ArrayField`
+多图片选择字段
 
+```python
+from juss.fields import MultipleImageField
 
-## 内置Widgets
-
-1. RichTextWidget
-
-使用`tinymce`的富文本编辑
-
-2. JFileInputWidget
-
-扩展默认的FileInput, 增加缩略图展示
-
-3. JMSelectWidget
-
-扩展默认的FilePathField, 增加可视化图片选择
-
-4. JImageWidget
-
-图片选择字段, 基于URLField, 需安装`django-attachments`
+class Demo(models.Model):
+    images = MultipleImageField(_('images'), blank=True, default=list)
+```
 
 ## 版本说明
+
+* v0.1.8
+  2020/05/20
+  使用template tag 代替middleware
 
 * v0.1.7
   多图增加上传

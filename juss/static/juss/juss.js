@@ -64,16 +64,25 @@ var toggle = Cookies.get('left-toggle');
 if(toggle) {
   django.jQuery("#left-box").hide();
   django.jQuery("#header2").addClass("header_fullwidth");
+  django.jQuery("#left_toggle_x").hide();
+  django.jQuery("#left_toggle_menu").show();
+} else {
+  django.jQuery("#left_toggle_x").show();
+  django.jQuery("#left_toggle_menu").hide();
 }
 django.jQuery("#left_toggle").on("click", function(e) {
   e.preventDefault();
   if(django.jQuery("#header2").hasClass("header_fullwidth")) {
     Cookies.remove('left-toggle');
     django.jQuery("#left-box").show();
+    django.jQuery("#left_toggle_x").show();
+    django.jQuery("#left_toggle_menu").hide();
     django.jQuery("#header2").removeClass("header_fullwidth");
   } else {
     Cookies.set('left-toggle', 'true');
     django.jQuery("#left-box").hide();
+    django.jQuery("#left_toggle_x").hide();
+    django.jQuery("#left_toggle_menu").show();
     django.jQuery("#header2").addClass("header_fullwidth");
   }
 });
