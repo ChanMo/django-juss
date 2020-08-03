@@ -1,59 +1,60 @@
-if (typeof django !== 'undefined') {
-
 /**
  * Left menu
  */
-django.jQuery('#left-box > ul > li > a').on('click', function(e) {
-  django.jQuery(this).parent('li').toggleClass('active');
-});
+document.querySelectorAll("#left-box > ul > li > a").forEach(item => {
+  item.onclick = (e) => {
+    e.preventDefault()
+    item.parentNode.classList.toggle("active")
+  }
+})
 
 /**
  * filter
  */
-django.jQuery("select.juss-filter-select").on("change", function(e) {
-  var href = django.jQuery("option:selected", this).data("href");
-  window.location.href = href;
-});
-
-/**
- * form tab
- */
-var fieldsets = django.jQuery(".change-form #content-main > form > div").children("fieldset, .inline-group");
-if (fieldsets.length) {
-var html = '<ul class="juss-tabs">';
-var title;
-fieldsets.each(function(index) {
-  django.jQuery(this).removeClass("collapse");
-  title = django.jQuery(this).find('h2').html();
-  title = title ? title : '基础信息';
-  html += '<li onclick="changeTab(this)">'+title+'</li>';
-});
-html += '</ul>';
-django.jQuery("#content-main").prepend(html);
-django.jQuery(".juss-tabs li:first-child").addClass("tab-active");
-
-django.jQuery(fieldsets[0]).show();
-fieldsets.slice(1).each(function(){
-  django.jQuery(this).hide();
-});
-
-/**
- * tabs切换事件
- */
-function changeTab(e) {
-  var index = django.jQuery(e).index();
-  fieldsets.each(function(i){
-    if(i == index) {
-      django.jQuery(this).show();
-    } else {
-      django.jQuery(this).hide();
-    }
-  });
-  if(!django.jQuery(e).hasClass("tab-active")) {
-    django.jQuery(".tab-active").removeClass("tab-active");
-    django.jQuery(e).addClass("tab-active");
+document.querySelectorAll("select.juss-filter-select").forEach(item => {
+  item.onchange = (e) => {
+    let href = item.selectedOptions[0].dataset.href;
+    window.location.href = href;
   }
+})
+
+/**
+ * form tabs
+ */
+var fieldsets = document.querySelectorAll(".change-form fieldset")
+if(fieldsets.length) {
+  //var html = "<ul class=\"juss-tabs\">";
+  var ul = document.createElement("ul")
+  ul.classList.add("juss-tabs")
+  fieldsets.forEach((item, index) => {
+    item.classList.remove("collapse")
+    var title = item.querySelector("h2")
+    title = title ? title.innerHTML : "基础信息"
+    var li = document.createElement("li")
+    li.innerHTML = title
+    li.setAttribute("onclick", "changeTab(this, "+index+")")
+    ul.appendChild(li)
+  })
+  document.getElementById("content-main").insertBefore(ul, document.querySelector(".object-tools"));
+  document.getElementById("content-main").insertAdjacentElement("afterbegin", ul);
+  document.querySelector(".juss-tabs li:first-child").classList.add("tab-active")
+
+  fieldsets[0].style.display = "block"
+  Array.from(fieldsets).slice(1).map(item => item.style.display = "none")
 }
+
+const changeTab = (e, index) => {
+  fieldsets.forEach((item,i) => {
+    if(i == index) {
+      item.style.display = "block"
+    } else {
+      item.style.display = "none"
+    }
+  })
+  if(!e.classList.contains("tab-active")) {
+    document.querySelector(".tab-active").classList.remove("tab-active")
+    e.classList.add("tab-active")
+  }
 }
 
 
@@ -86,4 +87,74 @@ django.jQuery("#left_toggle").on("click", function(e) {
     django.jQuery("#header2").addClass("header_fullwidth");
   }
 });
+
+/**
+ * actions toggle all
+ */
+if(document.getElementById("action-toggle")) {
+  document.getElementById("action-toggle").remove();
+  var input = document.createElement("input");
+  input.setAttribute("type", "checkbox");
+  input.setAttribute("id", "action-toggle");
+  //input.style.display = "none";
+  var label = document.createElement("label");
+  label.setAttribute("for", "action-toggle");
+  label.innerHTML = "全选";
+  label.style.marginRight = ".5rem";
+  label.style.marginLeft = ".25rem";
+  var actions = document.querySelector("#changelist-form .actions");
+  actions.insertBefore(input, actions.childNodes[0]);
+  actions.insertBefore(label, actions.childNodes[1]);
 }
+
+/**
+ * add label for input checkbox
+ */
+document.querySelectorAll("input[type='checkbox']").forEach((row, index) => {
+  var label = document.createElement("label");
+  var id = null;
+  if(!row.nextSibling) {
+    id = row.getAttribute("id");
+    if(!id) {
+      id = `auto_checkbox_${index}`
+    }
+    row.setAttribute("id", id);
+    label.setAttribute("for", id);
+    row.parentNode.appendChild(label);
+  }
+})
+
+/** dashboard module **/
+function setWaterfall() {
+  let maxwidth = document.getElementById("content-main").clientWidth
+  let y = 0;
+  let x = 0;
+  let column = 1
+  if(maxwidth <= 768) {
+    column = 1
+  } else if (maxwidth <= 1024) {
+    column = 3
+  } else {
+    column = 4
+  }
+  let width = maxwidth / column
+  let cols = new Array(column).fill(y)
+  document.querySelectorAll(".dashboard #content-main .module").forEach(row => {
+    row.style.position = "absolute"
+    row.style.width = width + 'px'
+    y = Math.min.apply(null, cols)
+    x = cols.indexOf(y)
+    row.style.top = y + 'px'
+    row.style.left = width * x + 'px'
+    cols[x] += row.clientHeight
+  })
+  document.getElementById("content-main").style.height = Math.max.apply(null, cols) + 'px';
+}
+
+if(document.querySelector(".dashboard")) {
+  setWaterfall();
+  window.onresize = function(){
+    setWaterfall();
+  }
+}
+

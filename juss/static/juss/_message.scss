@@ -1,0 +1,24 @@
+ul.messagelist {
+  margin-bottom: 0.25rem !important;
+}
+ul.messagelist li {
+  padding: 1rem;
+  background: none;
+  border-radius: 0.25rem !important;
+  color: white !important;
+}
+ul.messagelist li.success {
+  background-color: $success !important;
+}
+ul.messagelist li.info {
+  background-color: $info !important;
+}
+ul.messagelist li.warning {
+  background-color: $warning !important;
+}
+ul.messagelist li.danger {
+  background-color: $danger !important;
+}
+
+
+

@@ -1,0 +1,42 @@
+// color
+$primary: #218c74; // 主色调
+$secondary: #ffda79; // 辅色
+
+$success: #218c74; // 成功
+$info: #227093; // 信息
+$warning: #cc8e35; // 提醒
+$danger: #b33939; // 危险
+
+$text: lighten(#2d3436, 20%); // 文本
+$bg: #F1F3F8; // 背景
+//$bg: #f7f1e3; // 背景
+
+// box
+$selector-header-bg: #636e72; 
+$box-bg: white;
+$caption-bg: #dfe6e9;
+$light: rgba(0,0,0,0.04);
+$radius: 1rem; // 圆角
+$left-width: 280px;
+$shadow: 1px 2px 4px rgba(0,0,0,0.06);
+
+// topbar
+$navbar-bg: white;
+$navbar-text: $text;
+
+// leftmenu
+$left-bg: #2d3436;
+$left-header-bg: darken($left-bg, 5%);
+$left-header-text: white;
+$left-item-hover-bg: lighten($left-bg, 3%);
+$left-item-text: rgba(255,255,255,0.95);
+
+// button
+$btn-bg: rgba(0,0,0,0.08);
+$btn-text: #636e72;
+$btn-primary: $primary;
+$btn-danger: #d63031;
+
+// table
+$tr-hover-bg: rgba($secondary,0.1);
+$thead-bg: rgba(0,0,0,0.04);

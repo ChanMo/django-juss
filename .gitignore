@@ -3,3 +3,7 @@ __pycache__
 
 .sass-cache
 *.map
+
+dist/
+build/
+django_juss.egg-info/

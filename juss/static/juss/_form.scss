@@ -1,0 +1,80 @@
+form .aligned p.help, form .aligned div.help {
+    //clear: initial;
+}
+.inline-group .tabular tr td.original p {
+    display: none;
+}
+
+/** change-form **/
+.selector-chosen h2 {
+    background-color: $selector-header-bg;
+}
+
+
+.submit-row {
+  padding: 0.5rem 0;
+  border: none;
+  background-color: transparent;
+  margin: 1rem 0 0;
+}
+
+.change-form {
+    .module {
+        & > h2 {
+            display: none;
+        }
+    }
+    .inline-group {
+        .tabular {
+            td.original {
+                p {
+                    top: 3.25rem;
+                }
+            }
+        }
+    }
+}
+
+.form-row {
+    padding: 1rem .5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/** tabs **/
+.juss-tabs {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  margin-bottom: 1rem;
+}
+.juss-tabs li {
+  display: inline-block;
+  padding: 0.25rem 1rem 1.2rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: var(--gray);
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+.tab-active {
+    color: $primary !important;
+    border-color: $primary !important;
+
+}
+
+@media (max-width:768px) {
+    .submit-row a.deletelink {
+        display: block;
+        height: initial;
+    }
+}
+
+// 删除时取消按钮
+.delete-confirmation form .cancel-link {
+    height: initial;
+}
+
+.vTextField, .vUUIDField {
+    width: 320px;
+}

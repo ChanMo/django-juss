@@ -1,1 +1,143 @@
+.change-list {
+    #changelist {
+        #actions {
+            margin-right: 0;
+        }
+        #toolbar {
+        }
+        table {
+            thead {
+                tr {
+                    th {
+                        border: none;
+                        //border-top: 1px solid rgba(black, 0.08);
+                        border-bottom: 1px solid rgba(black, 0.04);
+                        color: $text;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    th, td {
+                        vertical-align: middle;
+                        padding: 0.75rem 0.5rem;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
 
+}
+
+// 筛选
+#changelist-filter {
+    position: relative;
+    z-index: initial;
+    padding: 0.5rem 0.25rem;
+    background-color: transparent;
+    white-space: nowrap;
+    overflow-x: auto;
+    width: initial;
+    margin-bottom: 1rem;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    h2 {
+        display: none;
+    }
+}
+#changelist-form {
+    .results {
+        margin-right: 0;
+    }
+}
+
+.juss-filter {
+    display: inline-block;
+    margin: 0 .5rem 0 .5rem;
+    &-select {
+        background-color: #eee;
+        border: none !important;
+    }
+}
+
+// 搜索框
+#changelist #toolbar {
+    margin: 0;
+    padding: .5rem 0;
+    background: transparent;
+    border: none;
+    form {
+        #searchbar {
+            height: 2.2rem !important;
+            padding: 0.25rem .75rem;
+        }
+    }
+}
+
+#changelist-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#changelist-form .results {
+    width: 100%;
+}
+// 批量操作
+#changelist .actions {
+    flex: 1;
+    order: 2;
+    margin-right: 0;
+    background: transparent;
+    margin-top: 1.5rem;
+    padding: .5rem 0;
+}
+#changelist .actions.selected {
+    background-color: transparent;
+    border: none;
+}
+// 分页
+#changelist .paginator {
+    order: 3;
+    margin-right: 0;
+    text-align: right;
+    border: none;
+    background-color: transparent;
+    margin-top: 1.5rem;
+    a:link, a:visited {
+        padding: 0.5rem .75rem;
+        background-color: $primary;
+    }
+    a.showall {
+        color: $primary;
+        background-color: transparent;
+    }
+}
+
+.row1 {
+    background: transparent;
+}
+.row2 {
+    background: $tr-hover-bg
+}
+.row1, .row2 {
+    &:hover {
+        background: $tr-hover-bg;
+    }
+}
+#changelist table tbody tr.selected {
+    background: rgba($secondary, 0.4);
+}
+
+table thead th .text span {
+    padding: 0.75rem .5rem;
+}
+.change-list #changelist table thead tr th {
+    //background: $thead-bg;
+    background: transparent;
+    .text a {
+        padding: 0.75rem .5rem;
+    }
+}

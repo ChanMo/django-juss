@@ -1,0 +1,72 @@
+/** login page **/
+$dark: #2d3436;
+#login-page {
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+#login-bg {
+  flex: 1;
+  background: url(https://images.unsplash.com/photo-1515096788709-a3cf4ce0a4a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1306&q=80);
+  background-size: cover;
+  background-position: center;
+  padding: 4rem;
+}
+#login-bg h1 {
+  letter-spacing: 4px;
+}
+#login-box {
+  width: 400px;
+  max-width: 100%;
+  padding: 10vh 2rem 2rem;
+  box-sizing: border-box;
+  background-color: $dark;
+  color: white;
+}
+#login-box h2 {
+  margin-bottom: 2rem;
+}
+#login-box h2>small {
+  margin-left: 0.5rem;
+}
+#login-page .form-row label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+}
+#login-page .form-row {
+  padding: 0;
+  margin-bottom: 1rem;
+}
+#login-page input {
+  display: block;
+  width: 100%;
+  padding: 0.35rem 1rem;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  border: none;
+  color: $dark;
+}
+
+#login-page .submit-row {
+  background-color: transparent !important;
+}
+#login-page .submit-row input {
+  background-color: $primary !important;
+  color: white !important;
+}
+#login-box .errornote {
+  margin-bottom: 1.5rem;
+  color: $warning !important;
+  font-size: 0.8rem !important;
+}
+@media (max-width:576px) {
+  #login-bg {
+    display: none !important;
+  }
+  #login-box {
+    width: 100%;
+  }
+}
+

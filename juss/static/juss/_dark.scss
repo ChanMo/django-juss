@@ -1,0 +1,27 @@
+$primary: #0984e3;
+$secondary: #e1e1ef;
+$text: rgba(255,255,255,0.87);
+$bg: black;
+$box-bg: #2d3436;
+$radius: 0.25rem;
+$left-width: 280px;
+
+$navbar-bg: $box-bg;
+$navbar-text: $text;
+
+// light
+$left-bg: #2d3436;
+$left-header-bg: darken($left-bg, 5%);
+$left-header-text: white;
+$left-item-hover-bg: lighten($left-bg, 3%);
+$left-item-text: rgba(255,255,255,0.95);
+
+$btn-bg: rgba(0,0,0,0.08);
+$btn-text: #636e72;
+
+$btn-primary: $primary;
+$btn-danger: #d63031;
+
+$selector-header-bg: #636e72; 
+$caption-bg: lighten($box-bg, 20%);
+$light: rgba(0,0,0,0.04);

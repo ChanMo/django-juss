@@ -4,7 +4,7 @@
   {% for i in juss_menus_data %}
   <li {% for ii in i.children %}{% if ii.active %}class="active"{% endif %}{% endfor %}>
     <a href="javascript:;">{{i.label}}
-      <img src="{% static "juss/chevron-right.svg" %}" width="20" height="20" alt=">" />
+      <i data-feather="chevron-right"></i>
     </a>
     <ul>
     {% for ii in i.children %}

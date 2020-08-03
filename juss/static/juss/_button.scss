@@ -1,0 +1,51 @@
+@mixin button-base {
+    display: inline-block;
+    background: $btn-bg;
+    color: $btn-text;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    box-shadow: none;
+    &:hover, &:active, &:focus {
+        cursor: pointer;
+        background: darken($btn-bg, 20%);
+        color: darken($btn-text, 20%);
+    }
+    &:disabled {
+        color: lighten($btn-text, 20%);
+        cursor: default;
+        pointer-events: none;
+    }
+}
+
+@mixin button($color) {
+    background: $color;
+    color: white;
+    &:hover, &:active, &:focus {
+        background: darken($color, 10%);
+    }
+}
+
+@mixin button-small {
+    font-size: 80%;
+}
+
+.button, 
+input[type=submit], 
+input[type=button], 
+.submit-row input, 
+#changelist #toolbar form input[type="submit"],
+a.button {
+    @include button-base;
+}
+
+.button.default, 
+input[type=submit].default, 
+.submit-row 
+input.default {
+    @include button($btn-primary);
+}
+
+.submit-row a.deletelink {
+    @include button($btn-danger);
+    display: inline;
+}

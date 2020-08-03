@@ -1,4 +1,5 @@
 import logging
+import re
 
 from django import template
 from django.conf import settings
@@ -10,7 +11,8 @@ def check_url(base, url):
     " 判断当前选中菜单 "
 
     if base == '/admin/':
-        return base == url
+        return re.match('^.*\/admin\/(\?.*)?$', url)
+        #return base == url
     elif base:
         return base in url
     else:
@@ -52,6 +54,8 @@ def get_custom_menus(app_list, name, current=None):
 @register.inclusion_tag('juss/juss_menus.html', takes_context=True)
 def juss_menus(context, current=None):
 
+    if 'available_apps' not in context:
+        return
     app_list = context['available_apps']
     menu = getattr(settings, 'JUSS_LEFT_MENU', False)
     new_menu = []

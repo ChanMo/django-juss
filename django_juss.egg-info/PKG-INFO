@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: django-juss
-Version: 0.1.8
+Version: 0.2.0
 Summary: A simple django admin theme.
 Home-page: https://github.com/ChanMo/django-juss.git
 Author: ChanMo
@@ -21,7 +21,6 @@ Description: # DjangoJuss
         1. 下载`django-juss`
         
         ```bash
-        $ pip install django-attachments # 图片管理
         $ pip install django-juss
         ```
         
@@ -67,34 +66,13 @@ Description: # DjangoJuss
         ]
         ```
         
-        ## 内置Fields
-        
-        1. ImageChoiceField
-        
-        单图片选择字段
-        
-        ```python
-        from juss.fields import ImageChoiceField
-        
-        class Demo(models.Model):
-            image = ImageChoiceField(_('image'), blank=True, null=True)
-        ```
-        
-        2. MultipleImageField
-        
-        多图片选择字段
-        
-        ```python
-        from juss.fields import MultipleImageField
-        
-        class Demo(models.Model):
-            images = MultipleImageField(_('images'), blank=True, default=list)
-        ```
         
         ## 版本说明
         
-        * v0.1.8
-          2020/05/20
+        * v0.2.0 (2020/08/03)
+          配色样式更新, 移除fields, forms等, 只专注admin样式
+        
+        * v0.1.8 (2020/05/20)
           使用template tag 代替middleware
         
         * v0.1.7

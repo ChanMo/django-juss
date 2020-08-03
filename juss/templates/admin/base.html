@@ -1,103 +1,127 @@
-{% load i18n static %}<!DOCTYPE html>
-{% load juss_menus %}
+{% load i18n static juss_menus %}
+<!DOCTYPE html>
 <html lang="zh-hans">
-<head>
-<title>{% block title %}{% endblock %}</title>
-<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
-<link rel="stylesheet" type="text/css" href="{% static "juss/base.css" %}">
-<link rel="stylesheet" type="text/css" href="{% static "juss/juss.css" %}">
-{% block extrastyle %}{% endblock %}
-{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
-{% block extrahead %}{% endblock %}
-{% block responsive %}
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+    {% block extrastyle %}{% endblock %}
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
-{% endblock %}
-{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
-</head>
-{% load i18n %}
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static "juss/base.css" %}">
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+  </head>
+  {% load i18n %}
 
-<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
-  data-admin-utc-offset="{% now "Z" %}">
+  <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+        data-admin-utc-offset="{% now "Z" %}">
 
-<!-- Container -->
-<div id="container">
+    <!-- Container -->
+    <div id="container">
 
-    {% if not is_popup %}
-    <div id="left-box">
+      {% if not is_popup %}
+      <div id="left-box">
         <div id="left-box__header">
-            <h1>{{site_title}}</h1>
+          <h1>{{site_title}}</h1>
         </div>
         {% juss_menus request.path_info %}
-    </div>
-    <div id="right-box">
-    {% endif %}
-
-    {% if not is_popup %}
-    <!-- Header -->
-
-    <div id="header2">
-      <div class="header__left">
-          <a id="left_toggle" href="#">
-              <img src="{% static "juss/menu.svg" %}" alt="menu" id="left_toggle_menu" />
-              <img src="{% static "juss/x.svg" %}" alt="menu" id="left_toggle_x" style="display:none;" />
-          </a>
-        {% block breadcrumbs %}
-        <div class="breadcrumbs">
-        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-        {% if title %}&rsaquo; {{ title }}{% endif %}
-        </div>
-        {% endblock %}
       </div>
-      <ul id="user-tools2">
-          {% if site_url %}<li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>{% endif %}
-        <li>
-            <a href="#">Hi,  {% firstof user.get_short_name user.get_username %}</a>
-            <ul>
+      <div id="right-box">
+        {% endif %}
+
+        {% if not is_popup %}
+        <!-- Header -->
+
+        <div id="header2">
+          <div class="header__left">
+            <a id="left_toggle" href="#">
+              <i data-feather="menu" id="left_toggle_menu"></i>
+              <i data-feather="x" id="left_toggle_x" style="display:none;"></i>
+            </a>
+
+            <!-- search form -->
+            <form id="search-form">
+              {% csrf_token %}
+              <i data-feather="search" width="18" height="18"></i>
+              <input name="search" type="search" />
+            </form>
+
+          </div>
+          <ul id="user-tools2">
+            {% if site_url %}<li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>{% endif %}
+            {% if user.is_active and user.is_staff %}
+                {% url 'django-admindocs-docroot' as docsroot %}
+                {% if docsroot %}
+                    <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+                {% endif %}
+            {% endif %}
+            <li>
+              <a href="#">{% firstof user.get_short_name user.get_username %}</a>
+              {{user.get_avatar}}
+              <ul>
                 <li><a href="/admin/accounts/user/{{user.id}}/change/">我的信息</a></li>
                 <li><a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a></li>
                 <li><a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a></li>
-            </ul>
-        </li>
-    </ul>
+              </ul>
+            </li>
+          </ul>
 
-    </div>
-
-    {% endif %}
-
-    <!-- Content -->
-    <div id="content" class="{% block coltype %}colM{% endblock %}">
-        {% block pretitle %}{% endblock %}
-        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
-
-        <div id="inner">
-    {% block messages %}
-        {% if messages %}
-        <ul class="messagelist">{% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
-        {% endfor %}</ul>
-        {% endif %}
-    {% endblock messages %}
-
-        {% block content %}
-        {% block object-tools %}{% endblock %}
-        {{ content }}
-        {% endblock %}
-        {% block sidebar %}{% endblock %}
         </div>
-        <br class="clear">
+
+        {% endif %}
+
+        <!-- Content -->
+        <div id="content" class="{% block coltype %}colM{% endblock %}">
+          <div id="content-header">
+            {% block pretitle %}{% endblock %}
+            {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+
+            {% block breadcrumbs %}
+            <div class="breadcrumbs">
+              <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+              {% if title %}&rsaquo; {{ title }}{% endif %}
+            </div>
+            {% endblock %}
+
+          </div>
+
+
+          <div id="inner">
+            {% block messages %}
+            {% if messages %}
+            <ul class="messagelist">{% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+              {% endfor %}</ul>
+            {% endif %}
+            {% endblock messages %}
+
+            {% block content %}
+            {% block object-tools %}{% endblock %}
+            {{ content }}
+            {% endblock %}
+            {% block sidebar %}{% endblock %}
+          </div>
+          <br class="clear">
+        </div>
+        <!-- END Content -->
+
+        {% if not is_popup %}
+        {% block footer %}<div id="footer"></div>{% endblock %}
+        {% endif %}
+      </div>
     </div>
-    <!-- END Content -->
+    <!-- END Container -->
+    <script src="{% static "juss/js.cookie.min.js" %}"></script>
+    <script src="{% static "base/feather.min.js" %}"></script>
+    <script src="{% static "juss/juss.js" %}"></script>
+    <script src="{% static "base/jdenticon.js" %}"></script>
+    <script>
+      feather.replace();
+    </script>
 
-    {% if not is_popup %}
-    {% block footer %}<div id="footer"></div>{% endblock %}
-    {% endif %}
-</div>
-</div>
-<!-- END Container -->
-<script src="{% static "juss/js.cookie.min.js" %}"></script>
-<script src="{% static "juss/juss.js" %}"></script>
-
-</body>
+  </body>
 </html>
