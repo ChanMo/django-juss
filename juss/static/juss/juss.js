@@ -21,7 +21,7 @@ document.querySelectorAll("select.juss-filter-select").forEach(item => {
 /**
  * form tabs
  */
-var fieldsets = document.querySelectorAll(".change-form fieldset")
+var fieldsets = document.querySelectorAll("form > div > fieldset, .inline-group fieldset:not(.aligned)")
 if(fieldsets.length) {
   //var html = "<ul class=\"juss-tabs\">";
   var ul = document.createElement("ul")
