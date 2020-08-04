@@ -5,7 +5,9 @@
 ## Screenshots
 
 ![Login](./login.png)
-![Users](./users.png)
+![Index](./index.png)
+![ChangeList](./changelist.png)
+![ChangeForm](./changeform.png)
 
 
 ## Quick start
