@@ -61,9 +61,14 @@
             {% endif %}
             <li>
               <a href="#">{% firstof user.get_short_name user.get_username %}</a>
-              {{user.get_avatar}}
+              {# user avatar #}
+              {% if user.avatar %}
+              <img src="{{user.avatar}}" alt="{{user.username}}" width="32" height="32" />
+              {% else %}
+              <svg width="32" height="32" data-jdenticon-value="{{user.username}}"></svg>
+              {% endif %}
               <ul>
-                <li><a href="/admin/accounts/user/{{user.id}}/change/">我的信息</a></li>
+                {#<li><a href="/admin/accounts/user/{{user.id}}/change/">{% trans 'Profile' %}</a></li>#}
                 <li><a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a></li>
                 <li><a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a></li>
               </ul>
@@ -116,9 +121,9 @@
     </div>
     <!-- END Container -->
     <script src="{% static "juss/js.cookie.min.js" %}"></script>
-    <script src="{% static "base/feather.min.js" %}"></script>
+    <script src="{% static "juss/feather.min.js" %}"></script>
     <script src="{% static "juss/juss.js" %}"></script>
-    <script src="{% static "base/jdenticon.js" %}"></script>
+    <script src="{% static "juss/jdenticon.js" %}"></script>
     <script>
       feather.replace();
     </script>
