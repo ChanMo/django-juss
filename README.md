@@ -4,10 +4,10 @@
 
 ## Screenshots
 
-![Login](./login.png)
-![Index](./index.png)
-![ChangeList](./changelist.png)
-![ChangeForm](./changeform.png)
+![Login](/login.png)
+![Index](/index.png)
+![ChangeList](/changelist.png)
+![ChangeForm](/changeform.png)
 
 
 ## Quick start
