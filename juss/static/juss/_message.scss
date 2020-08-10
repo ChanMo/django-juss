@@ -20,5 +20,8 @@ ul.messagelist li.danger {
   background-color: $danger !important;
 }
 
-
-
+.messagelist {
+    a:link, a:visited {
+        color: white;
+    }
+}

@@ -63,7 +63,7 @@
               <a href="#">{% firstof user.get_short_name user.get_username %}</a>
               {# user avatar #}
               {% if user.avatar %}
-              <img src="{{user.avatar}}" alt="{{user.username}}" width="32" height="32" />
+              <img src="{{user.avatar}}" alt="{{user.username}}" width="32" height="32" class="avatar" />
               {% else %}
               <svg width="32" height="32" data-jdenticon-value="{{user.username}}"></svg>
               {% endif %}

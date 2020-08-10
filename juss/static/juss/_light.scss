@@ -1,5 +1,5 @@
 // color
-$primary: #218c74; // 主色调
+$primary: #026aa7; // 主色调
 $secondary: #ffda79; // 辅色
 
 $success: #218c74; // 成功
@@ -38,5 +38,6 @@ $btn-primary: $primary;
 $btn-danger: #d63031;
 
 // table
-$tr-hover-bg: rgba($secondary,0.1);
+//$tr-hover-bg: rgba($secondary,0.1);
+$tr-hover-bg: rgba(0,0,0,0.02);
 $thead-bg: rgba(0,0,0,0.04);

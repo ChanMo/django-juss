@@ -58,7 +58,7 @@ input[type=checkbox] {
     $size: 16px;
     display: none !important;
     & + label {
-        display: inline-flex;
+        display: inline-block;
         line-height: $size;
     }
     & + label:before{
@@ -72,6 +72,9 @@ input[type=checkbox] {
         border-radius: 50%;
         border: 1px solid lightgrey;
         margin-right: .5rem;
+    }
+    & + label.vCheckboxLabel:before {
+        margin-top: -2px;
     }
     &:checked + label:before {
         color: white;

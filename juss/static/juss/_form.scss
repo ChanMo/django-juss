@@ -78,3 +78,7 @@ form .aligned p.help, form .aligned div.help {
 .vTextField, .vUUIDField {
     width: 320px;
 }
+
+.inline-group ul.tools a.add, .inline-group div.add-row a, .inline-group .tabular tr.add-row td a {
+    background-size: 12px 12px;
+}

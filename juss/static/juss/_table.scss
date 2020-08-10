@@ -1,9 +1,8 @@
+/** 列表页 **/
 .change-list {
     #changelist {
         #actions {
             margin-right: 0;
-        }
-        #toolbar {
         }
         table {
             thead {
@@ -36,7 +35,7 @@
     position: relative;
     z-index: initial;
     padding: 0.5rem 0.25rem;
-    background-color: transparent;
+    //background-color: rgba(0,0,0,0.12);
     white-space: nowrap;
     overflow-x: auto;
     width: initial;
@@ -65,14 +64,19 @@
 
 // 搜索框
 #changelist #toolbar {
-    margin: 0;
-    padding: .5rem 0;
+    margin: 0 0 .5rem 0;
+    padding: .5rem 1rem;
     background: transparent;
     border: none;
     form {
+        div {
+            display: flex;
+            align-items: stretch;
+        }
         #searchbar {
             height: 2.2rem !important;
             padding: 0.25rem .75rem;
+            margin-right: .5rem;
         }
     }
 }
