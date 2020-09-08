@@ -54,7 +54,7 @@ textarea {
     }
 }
 
-input[type=checkbox] {
+.change-list input[type=checkbox] {
     $size: 16px;
     display: none !important;
     & + label {
