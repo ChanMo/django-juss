@@ -63,28 +63,28 @@ const changeTab = (e, index) => {
  */
 var toggle = Cookies.get('left-toggle');
 if(toggle) {
-  django.jQuery("#left-box").hide();
-  django.jQuery("#header2").addClass("header_fullwidth");
-  django.jQuery("#left_toggle_x").hide();
-  django.jQuery("#left_toggle_menu").show();
+  document.getElementById("left-box").style.display = "none";
+  document.getElementById("header2").classList.add("header_fullwidth");
+  document.getElementById("left_toggle_x").style.display = "none";
+  document.getElementById("left_toggle_menu").style.display = "block";
 } else {
-  django.jQuery("#left_toggle_x").show();
-  django.jQuery("#left_toggle_menu").hide();
+  document.getElementById("left_toggle_x").style.display = "block";
+  document.getElementById("left_toggle_menu").style.display = "none";
 }
-django.jQuery("#left_toggle").on("click", function(e) {
+document.getElementById("left_toggle").addEventListener("click", function(e) {
   e.preventDefault();
-  if(django.jQuery("#header2").hasClass("header_fullwidth")) {
+  if(document.getElementById("header2").classList.contains("header_fullwidth")) {
     Cookies.remove('left-toggle');
-    django.jQuery("#left-box").show();
-    django.jQuery("#left_toggle_x").show();
-    django.jQuery("#left_toggle_menu").hide();
-    django.jQuery("#header2").removeClass("header_fullwidth");
+    document.getElementById("left-box").style.display = "block";
+    document.getElementById("left_toggle_x").style.display = "block";
+    document.getElementById("left_toggle_menu").style.display = "none";
+    document.getElementById("header2").classList.remove("header_fullwidth");
   } else {
     Cookies.set('left-toggle', 'true');
-    django.jQuery("#left-box").hide();
-    django.jQuery("#left_toggle_x").hide();
-    django.jQuery("#left_toggle_menu").show();
-    django.jQuery("#header2").addClass("header_fullwidth");
+    document.getElementById("left-box").style.display = "none";
+    document.getElementById("left_toggle_x").style.display = "none";
+    document.getElementById("left_toggle_menu").style.display = "block";
+    document.getElementById("header2").classList.add("header_fullwidth");
   }
 });
 
